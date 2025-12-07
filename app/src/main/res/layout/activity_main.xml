@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:background="#40BBEE"
+    android:background="@color/celeste"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="15dp"
@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:gravity="center"
         android:layout_height="wrap_content"
-        android:text="INICIO DE SESIÓN"
+        android:text="@string/inicio_de_sesion"
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,7 +28,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
         app:layout_constraintTop_toBottomOf="@+id/logintext"
-        android:background="@color/black"/>
+        android:background="@color/plomo_oscuro"/>
 
     <androidx.cardview.widget.CardView
         android:layout_marginTop="20dp"
@@ -42,9 +42,8 @@
         <LinearLayout
             android:layout_width="271dp"
             android:gravity="center"
-            android:background="#40BBEE"
+            android:background="@color/celeste"
             android:layout_height="271dp">
-
             <ImageView
                 android:layout_width="273dp"
                 android:layout_height="273dp"
@@ -64,10 +63,12 @@
         android:layout_height="wrap_content">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/verde_oscuro">
             <EditText
                 android:layout_width="match_parent"
-                android:hint="NOMBRE DE USUARIO"
+                android:textColorHint="@color/plomo"
+                android:hint="@string/nombre_de_usuario"
                 android:gravity="center"
                 android:textColor="@color/white"
                 android:layout_height="wrap_content"/>
@@ -84,11 +85,13 @@
         android:layout_height="wrap_content">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/verde_oscuro">
             <EditText
                 android:layout_width="match_parent"
-                android:hint="CONTRASEÑA"
+                android:hint="@string/contrasenia"
                 android:gravity="center"
+                android:textColorHint="@color/plomo"
                 android:textColor="@color/white"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
@@ -98,8 +101,8 @@
         android:id="@+id/registroButton"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="Registrarse"
-        android:backgroundTint="@color/black"
+        android:text="@string/registrarse"
+        android:backgroundTint="@color/azul_oscuro"
         android:layout_margin="30dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -110,5 +113,5 @@
         android:layout_height="5dp"
         android:layout_marginBottom="25dp"
         app:layout_constraintBottom_toTopOf="@+id/registroButton"
-        android:background="@color/black"/>
+        android:background="@color/plomo_oscuro"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

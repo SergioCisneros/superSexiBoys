@@ -2,4 +2,9 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="celeste">#40BBEE</color>
+    <color name="plomo_oscuro">#606080</color>
+    <color name="azul_oscuro">#1800AC</color>
+    <color name="verde_oscuro">#116669</color>
+    <color name="plomo">#B7B7B7</color>
 </resources>

@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">SuperSexiBoys</string>
+    <string name="inicio_de_sesion">INICIO DE SESIÓN</string>
+    <string name="nombre_de_usuario">NOMBRE DE USUARIO</string>
+    <string name="contrasenia">CONTRASEÑA</string>
+    <string name="registrarse">Registrarse</string>
 </resources>
