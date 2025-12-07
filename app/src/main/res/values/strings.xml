@@ -4,4 +4,6 @@
     <string name="nombre_de_usuario">NOMBRE DE USUARIO</string>
     <string name="contrasenia">CONTRASEÑA</string>
     <string name="registrarse">Registrarse</string>
+    <string name="registro">REGISTRO</string>
+    <string name="aceptar">Aceptar</string>
 </resources>

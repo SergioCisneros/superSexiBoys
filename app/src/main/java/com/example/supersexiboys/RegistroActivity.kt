@@ -1,33 +1,20 @@
 package com.example.supersexiboys
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.supersexiboys.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
-    val context: Context = this
-    private lateinit var binding: ActivityMainBinding
+class RegistroActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_registro)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
-        binding.registroButton.setOnClickListener {
-            val cambioAReistroActivity: Intent = Intent(context,RegistroActivity::class.java)
-            startActivity(cambioAReistroActivity)
-        }
-
     }
 }
