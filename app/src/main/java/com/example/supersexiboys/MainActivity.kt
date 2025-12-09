@@ -1,24 +1,28 @@
 package com.example.supersexiboys
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
+
 import com.example.supersexiboys.databinding.ActivityMainBinding
 
-private lateinit var auth: FirebaseAuth
-private lateinit var binding: MainActivityBinding
 class MainActivity : AppCompatActivity() {
     val context: Context = this
+    private lateinit var auth: FirebaseAuth
     private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        binding =
         setContentView(R.layout.activity_main)
         auth = Firebase.auth
 
@@ -30,37 +34,65 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        val currentUser = auth.currentUser
-        if (currentUser != null){
-            val intentUsurioLog = Intent(this, )
-            startActivity(intentUsurioLog)
-        }
+        //val currentUser = auth.currentUser
+       // if (currentUser != null){
+         //   val intentUsuarioLogueado = Intent(this, RegistroActivity::class.java)
+           // startActivity(intentUsuarioLogueado)
+        //}
 
-        binding.buttonLogin.setOnClickListener{
-            val correo =  binding.editEmail.text.toString
-    }
-
-    fun loginUsuario(
-        correo: String, password: String{}
-    ){
-        auth.signInWithEmailAndPassword(correo,password).addonCompleteListener{
-            task -> if (task.isSuccessful){
-                // Nuestro Usuario se Logeo Correctamente
-                val intentBloqup = Intent(pa)
-            } else {
-            Toast.makeText(
-                baseContext,
-                "No pudo loguarse",
-                Toast.LENGTH_SHORT,
-            ).show()
-            }
-        }
+        binding.loginButton.setOnClickListener {
+            val correo = binding.editEmail.text.toString()
+            val password = binding.editPassword.text.toString()
+            loginUsuario(correo, password)
         }
 
         binding.registroButton.setOnClickListener {
-            val cambioAReistroActivity: Intent = Intent(context,RegistroActivity::class.java)
-            startActivity(cambioAReistroActivity)
+            val correo = binding.editEmail.text.toString()
+            val password = binding.editPassword.text.toString()
+            crearUsuario(correo, password)
         }
+
+
+    }
+
+    fun loginUsuario(
+        correo: String, password: String
+    ){
+        auth.signInWithEmailAndPassword(correo, password)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful){
+                    // Nuestro Usuario se Logueo Correctamente
+                    val intentLogueado = Intent(this, RegistroActivity::class.java)
+                    startActivity(intentLogueado)
+                } else {
+                    // Nuestro usuario no se pudo Loguear
+                    Toast.makeText(
+                        baseContext,
+                        "No pudo loguearse",
+                        Toast.LENGTH_LONG,
+                    ).show()
+                }
+            }
+    }
+
+    fun crearUsuario(
+        correo: String,
+        password: String
+    ){
+        auth.createUserWithEmailAndPassword(correo, password)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful){
+                    // Mi usuario se creo Correctamente
+
+                } else{
+                    // No se pudo crear usuario
+                    Toast.makeText(
+                        baseContext,
+                        "No pudo loguearse",
+                        Toast.LENGTH_LONG,
+                    ).show()
+                }
+            }
 
     }
 }

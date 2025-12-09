@@ -66,6 +66,7 @@
             android:layout_height="wrap_content"
             android:background="@color/verde_oscuro">
             <EditText
+                android:id="@+id/editEmail"
                 android:layout_width="match_parent"
                 android:textColorHint="@color/plomo"
                 android:hint="@string/nombre_de_usuario"
@@ -89,6 +90,7 @@
             android:layout_height="wrap_content"
             android:background="@color/verde_oscuro">
             <EditText
+                android:id="@+id/editPassword"
                 android:layout_width="match_parent"
                 android:hint="@string/contrasenia"
                 android:gravity="center"
