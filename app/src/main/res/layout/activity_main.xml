@@ -69,7 +69,7 @@
                 android:id="@+id/editEmail"
                 android:layout_width="match_parent"
                 android:textColorHint="@color/plomo"
-                android:hint="@string/nombre_de_usuario"
+                android:hint="@string/e_mail"
                 android:gravity="center"
                 android:textColor="@color/white"
                 android:layout_height="wrap_content"/>

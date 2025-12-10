@@ -6,4 +6,6 @@
     <string name="registrarse">Registrarse</string>
     <string name="registro">REGISTRO</string>
     <string name="aceptar">Aceptar</string>
+    <string name="e_mail">E-MAIL</string>
+    <string name="cerrar_sesion">Cerrar Sesión</string>
 </resources>
