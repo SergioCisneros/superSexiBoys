@@ -15,6 +15,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SuperSexiBoys">
         <activity
+            android:name=".AgregandoHabitosActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HabitosActivity"
+            android:exported="false" />
+        <activity
             android:name=".LogueadoActivity"
             android:exported="false" />
         <activity
