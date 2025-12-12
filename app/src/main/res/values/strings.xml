@@ -11,7 +11,7 @@
     <string name="agregando_tarea">AGREGANDO TAREA</string>
     <string name="agregar_titulo_tarea">TITULO</string>
     <string name="agregar_descripcion_tarea">DESCRIPCION</string>
-    <string name="agregar_hora_tarea">hh:mm</string>
+    <string name="agregar_hora_tarea">(Horas:Minutos)</string>
 
 
 </resources>
