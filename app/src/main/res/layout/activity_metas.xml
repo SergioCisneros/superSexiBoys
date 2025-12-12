@@ -176,7 +176,7 @@
                     </LinearLayout>
 
                     <ProgressBar
-                        android:id="@+id/progresoMetaIngles"
+                        android:id="@+id/progresoMeta1"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:indeterminate="false"
@@ -249,7 +249,7 @@
                     </LinearLayout>
 
                     <ProgressBar
-                        android:id="@+id/progresoMetaPeso"
+                        android:id="@+id/progresoMeta2"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:indeterminate="false"
