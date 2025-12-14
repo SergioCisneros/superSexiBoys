@@ -15,6 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SuperSexiBoys">
         <activity
+            android:name=".MetasCompletadasActivity"
+            android:exported="false" />
+        <activity
             android:name=".AgregarMetaActivity"
             android:exported="false" />
         <activity

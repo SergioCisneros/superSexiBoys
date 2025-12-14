@@ -80,37 +80,70 @@
                 app:cardCornerRadius="12dp"
                 android:backgroundTint="#11676a">
 
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:orientation="vertical">
 
-
-                    <EditText
-                        android:id="@+id/edtTitulo"
+                    <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:backgroundTint="#4DD0B5"
+                        app:cardCornerRadius="12dp"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
-                        android:background="#4dd0b5"
-                        android:hint="Título"
-                        android:padding="10dp"
-                        android:textColor="@android:color/white"
-                        android:textColorHint="#e7fdfb" />
+                        >
 
-                    <EditText
-                        android:id="@+id/edtDescripcion"
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:orientation="vertical"
+                            android:padding="8dp"
+                            >
+
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:hint="Titulo"
+                                android:gravity="center"
+                                android:textColorHint="#d8e4ff"
+                                />
+
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+
+                    <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:backgroundTint="#4DD0B5"
+                        app:cardCornerRadius="12dp"
                         android:layout_marginStart="10dp"
-                        android:layout_marginTop="10dp"
                         android:layout_marginEnd="10dp"
-                        android:background="#4dd0b5"
-                        android:hint="Descripción"
-                        android:padding="10dp"
-                        android:textColor="@android:color/white"
-                        android:textColorHint="#e7fdfb" />
+                        >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:orientation="vertical"
+                            android:padding="8dp"
+                            >
+
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:hint="Descripcion"
+                                android:textColorHint="#d8e4ff"
+                                />
+
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+
 
                     <TextView
                         android:layout_width="match_parent"
@@ -120,16 +153,31 @@
                         android:textColor="@android:color/white"
                         android:textStyle="bold" />
 
-                    <EditText
-                        android:id="@+id/edtFecha"
+                    <androidx.cardview.widget.CardView
                         android:layout_width="wrap_content"
-                        android:layout_height="45dp"
-                        android:background="#4dd0b5"
-                        android:hint="dd/mm/aaaa"
-                        android:inputType="date"
-                        android:padding="10dp"
-                        android:textColor="@android:color/white"
-                        android:textColorHint="#e7fdfb" />
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:backgroundTint="#4DD0B5"
+                        app:cardCornerRadius="12dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:orientation="vertical"
+                            android:padding="8dp"
+                            >
+
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:hint="dd/mm/aaaa"
+                                android:textColorHint="#d8e4ff"
+                                />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
 
                     <TextView
                         android:layout_width="match_parent"
@@ -139,16 +187,31 @@
                         android:textColor="@android:color/white"
                         android:textStyle="bold" />
 
-                    <EditText
-                        android:id="@+id/edtFecha"
+                    <androidx.cardview.widget.CardView
                         android:layout_width="wrap_content"
-                        android:layout_height="45dp"
-                        android:background="#4dd0b5"
-                        android:hint="dd/mm/aaaa"
-                        android:inputType="date"
-                        android:padding="10dp"
-                        android:textColor="@android:color/white"
-                        android:textColorHint="#e7fdfb" />
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:backgroundTint="#4DD0B5"
+                        app:cardCornerRadius="12dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:orientation="vertical"
+                            android:padding="8dp"
+                            >
+
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:hint="dd/mm/aaaa"
+                                android:textColorHint="#d8e4ff"
+                                />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
 
 
                     <androidx.cardview.widget.CardView
@@ -167,7 +230,6 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:padding="10dp"
-
                             >
 
                             <EditText
@@ -178,16 +240,14 @@
                                 android:textColorHint="#d8e4ff"
 
                                 />
-
-
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
 
 
                     <Button
                         android:id="@+id/btnAgregarEtiqueta1"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="5dp"
                         android:backgroundTint="#5bb8dc"
@@ -204,9 +264,9 @@
                         android:textStyle="bold" />
 
                     <Button
-                        android:id="@+id/btnAgregarEtiqueta1"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:id="@+id/btnAgregarEtiqueta2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="5dp"
                         android:backgroundTint="#5bb8dc"
