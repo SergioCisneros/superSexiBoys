@@ -7,35 +7,30 @@
     android:layout_height="match_parent"
     android:background="@color/celeste"
     tools:context=".HabitosActivity">
-    <androidx.cardview.widget.CardView
+    <LinearLayout
         android:id="@+id/identifica_usuario"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_width="match_parent"
+        android:weightSum="10"
+        android:gravity="center"
+        android:orientation="horizontal"
         android:layout_margin="15dp"
-        app:cardCornerRadius="10dp"
         android:layout_height="wrap_content">
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:padding="5dp"
-            android:layout_width="match_parent"
-            android:background="@color/verde_oscuro"
-            android:layout_height="wrap_content">
-            <TextView
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:text="NOMBRE USUARIO"
-                android:layout_width="wrap_content"
-                android:textColor="@color/white"
-                android:textSize="25sp"
-                android:layout_height="wrap_content" />
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:src="@drawable/perfilvacio"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+        <Button
+            android:layout_weight="8"
+            android:layout_width="0dp"
+            android:text="Ver perfil"
+            android:backgroundTint="@color/verde_oscuro"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:id="@+id/imagen_perfil"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="40dp"
+            android:src="@drawable/perfilvacio"/>
+    </LinearLayout>
+
 
     <Button
         app:layout_constraintTop_toBottomOf="@+id/identifica_usuario"
@@ -73,7 +68,7 @@
         android:background="@color/plomo_oscuro"/>
 
     <Button
-        android:id="@+id/agregar_habito"
+        android:id="@+id/nuevo_habito_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -84,7 +79,7 @@
         android:layout_height="wrap_content"/>
     <Button
         android:id="@+id/comunidades"
-        app:layout_constraintBottom_toTopOf="@+id/agregar_habito"
+        app:layout_constraintBottom_toTopOf="@+id/nuevo_habito_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_width="wrap_content"
