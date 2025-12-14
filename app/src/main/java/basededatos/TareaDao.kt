@@ -1,4 +1,4 @@
-package basededatos
+package com.example.supersexiboys.basededatos
 
 import androidx.room.Dao
 import androidx.room.Delete

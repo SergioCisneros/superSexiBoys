@@ -1,4 +1,4 @@
-package basededatos
+package com.example.supersexiboys.basededatos
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
