@@ -37,7 +37,7 @@ class CrearTareaActivity : AppCompatActivity() {
             applicationContext,
             TareaDataBase::class.java,
             "tareas-db"
-        ).fallbackToDestructiveMigration() // Agregado para corregir errores de esquema
+        ).fallbackToDestructiveMigration()
             .allowMainThreadQueries().build()
 
         tituloActual = intent.getStringExtra("titulo")
@@ -73,7 +73,6 @@ class CrearTareaActivity : AppCompatActivity() {
             finish()
         }
 
-        // Listener para navegar a la vista de tareas terminadas
         binding.buttonBorrarTareas.text = "Ver Tareas Terminadas"
         binding.buttonBorrarTareas.setOnClickListener {
             val intent = Intent(this, TareasTerminadasActivity::class.java)
@@ -156,11 +155,6 @@ class CrearTareaActivity : AppCompatActivity() {
         }
     }
 
-    private fun borrarTodasLasTareas() {
-        db.tareaDao().deleteAll()
-        Toast.makeText(this, "Todas las tareas han sido borradas.", Toast.LENGTH_SHORT).show()
-        mostrarTareas()
-    }
 
     override fun onDestroy() {
         super.onDestroy()

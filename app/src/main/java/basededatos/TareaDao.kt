@@ -8,11 +8,9 @@ import androidx.room.Update
 
 @Dao
 interface TareaDao {
-    // Tareas pendientes (solo completada = 0)
     @Query("SELECT * FROM TareaEntity WHERE completada = 0")
     fun getAll(): List<TareaEntity>
 
-    // Tareas completadas (completada = 1)
     @Query("SELECT * FROM TareaEntity WHERE completada = 1 ORDER BY fecha_terminada DESC")
     fun getCompleted(): List<TareaEntity>
 
