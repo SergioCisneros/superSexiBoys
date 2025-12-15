@@ -1,9 +1,10 @@
+// TareaDataBase.kt
 package com.example.supersexiboys.basededatos
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
 
-@Database(entities = arrayOf(TareaEntity::class), version = 1)
-abstract class TareaDataBase: RoomDatabase() {
+@Database(entities = [TareaEntity::class], version = 2) // [CORRECCIÓN] Aumentar la versión a 2
+abstract class TareaDataBase : RoomDatabase() {
     abstract fun tareaDao(): TareaDao
 }

@@ -10,5 +10,7 @@ data class TareaEntity(
     @ColumnInfo(name = "titulo") val titulo: String,
     @ColumnInfo(name = "descripcion") val descripcion: String,
     @ColumnInfo(name = "tiempo_limite") val tiempoLimite: String,
-    @ColumnInfo(name = "etiquetas") val etiquetas: String
+    @ColumnInfo(name = "etiquetas") val etiquetas: String,
+    @ColumnInfo(name = "completada", defaultValue = "0") val completada: Boolean = false,
+    @ColumnInfo(name = "fecha_terminada") val fechaTerminada: Long? = null
 )

@@ -12,6 +12,10 @@
     <string name="agregar_titulo_tarea">TITULO</string>
     <string name="agregar_descripcion_tarea">DESCRIPCION</string>
     <string name="agregar_hora_tarea">(Horas:Minutos)</string>
-
+    <string name="nombre_del_usuario">Nombre Usuario</string>
+    <string name="tiempo_limite">Tiempo Limite</string>
+    <string name="texto_eqtiquetas">Etiquetas</string>
+    <string name="texto_plus">+</string>
+    <string name="texto_guardar">Guardar</string>
 
 </resources>
