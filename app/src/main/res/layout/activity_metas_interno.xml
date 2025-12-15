@@ -185,7 +185,7 @@
                     android:background="#11676a">
 
                     <CheckBox
-                        android:id="@+id/miCheckBox"
+                        android:id="@+id/miCheckBox1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:checked="false"
@@ -215,7 +215,7 @@
                     android:background="#11676a">
 
                     <CheckBox
-                        android:id="@+id/miCheckBox"
+                        android:id="@+id/miCheckBox2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:checked="false"
@@ -245,7 +245,7 @@
                     android:background="#11676a">
 
                     <CheckBox
-                        android:id="@+id/miCheckBox"
+                        android:id="@+id/miCheckBox3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:checked="false"
