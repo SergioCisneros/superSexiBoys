@@ -49,6 +49,7 @@
         app:layout_constraintTop_toBottomOf="@+id/agrega_habito_text"
         android:background="@color/plomo_oscuro"/>
     <androidx.cardview.widget.CardView
+        app:layout_constraintBottom_toTopOf="@+id/guardar_habito"
         app:layout_constraintTop_toBottomOf="@+id/linea"
         android:layout_width="match_parent"
         android:layout_margin="15dp"
