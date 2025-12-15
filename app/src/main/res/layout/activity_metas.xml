@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MetasActivity"
+    android:orientation="vertical"
+    android:weightSum="1"
+    android:background="#6DC8E6"
+    >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.18"
+        android:padding="10dp"
+        android:orientation="vertical"
+        >
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="12dp"
+
+            >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:gravity="center_vertical"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#11676a"
+            >
+
+            <TextView
+                android:id="@+id/txtNombreUsuario"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="NOMBRE USUARIO"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:background="#11676a"
+                android:textColor="@color/white" />
+
+
+            <ImageView
+                android:id="@+id/imgPerfil"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/perfilvacio"
+                android:background="@drawable/circuloblanco"
+                android:padding="5dp" />
+        </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnHabitos"
+                android:text="HÁBITOS"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:backgroundTint="#537bf1"
+                android:layout_height="45dp"
+                />
+
+            <Button
+                android:id="@+id/btnMetas"
+                android:text="METAS"
+                android:backgroundTint="@color/azul_oscuro"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="45dp"
+                />
+
+            <Button
+                android:id="@+id/btnTareas"
+                android:text="TAREAS"
+                android:backgroundTint="#537bf1"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="45dp"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/text_view_rojo"
+                android:layout_width="match_parent"
+                android:layout_height="2.5dp"
+                android:background="#11676A"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.60">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="6dp"
+                android:clickable="true"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="12dp"
+                    android:background="#11676a">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/logobalanza"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content"
+                        >
+
+                        <TextView
+                            android:text="BAJAR DE PESO"
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:textColor="@color/white"/>
+
+                        <TextView
+                            android:text="- Actividad 1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#EBC335"/>
+                        <TextView
+                            android:text="- Actividad 2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#EBC335"/>
+
+                        <TextView
+                            android:text="Deportes"
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#f28d00" />
+
+                    </LinearLayout>
+
+                    <ProgressBar
+                        android:id="@+id/progresoMeta1"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:indeterminate="false"
+                        android:max="100"
+                        android:progress="36"
+                        android:progressTint="@color/celeste" />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="6dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="12dp"
+                    android:background="#11676a">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/logoingles"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:paddingStart="10dp">
+
+                        <TextView
+                            android:text="APRENDER INGLÉS"
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:textColor="@color/white"/>
+
+                        <TextView
+                            android:text="- Actividad 1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#EBC335"/>
+                        <TextView
+                            android:text="- Actividad 2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#EBC335"/>
+                        <TextView
+                            android:text="- Actividad 3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#EBC335"/>
+
+                        <TextView
+                            android:text="Aprendizaje"
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#f28d00" />
+                    </LinearLayout>
+
+                    <ProgressBar
+                        android:id="@+id/progresoMeta2"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:indeterminate="false"
+                        android:max="100"
+                        android:progress="36"
+                        android:progressTint="@color/celeste" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.22"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="10dp">
+
+        <Button
+            android:id="@+id/btnComunidades"
+            android:text="Comunidades"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:backgroundTint="@color/azul_oscuro"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/btnMetasCompletadas"
+            android:text="Metas completadas"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:backgroundTint="@color/azul_oscuro"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/btnNuevaMeta"
+            android:text="Nueva Meta"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:backgroundTint="@color/azul_oscuro"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+
+</LinearLayout>
