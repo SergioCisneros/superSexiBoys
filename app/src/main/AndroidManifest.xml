@@ -12,8 +12,38 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SuperSexiBoys">
         <activity
+            android:name=".AgregandoHabitosActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".HabitosActivity"
+            android:exported="true">
+
+        </activity>
+        <activity
+            android:name=".MetasCompletadasActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AgregarMetaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MetasInternoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MetasActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LogueadoActivity"
+            android:exported="false" />
+        <activity
             android:name=".AdaptadorActivity"
             android:exported="false" />
+
         <activity
             android:name=".TareaActivity"
             android:exported="true">
@@ -26,9 +56,7 @@
         <activity
             android:name=".CrearTareaActivity"
             android:exported="false" />
-        <activity
-            android:name=".LogueadoActivity"
-            android:exported="false" />
+
         <activity
             android:name=".RegistroActivity"
             android:exported="false" /> <activity
@@ -40,4 +68,5 @@
             android:exported="false" />
 
     </application>
+
 </manifest>
