@@ -10,20 +10,20 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/textTitulo"
+            android:id="@+id/tituloDeTarea"
             android:textSize="25sp"
             android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
         <TextView
-            android:id="@+id/textDescripcion"
+            android:id="@+id/descripcionDeTarea"
             android:textSize="20sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
         <TextView
-            android:id="@+id/textTiempo"
+            android:id="@+id/tiempoDeTarea"
             android:textSize="20sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -31,13 +31,13 @@
             />
 
         <TextView
-            android:id="@+id/textEtiquetas"
+            android:id="@+id/etiquetaDeTarea"
             android:textSize="20sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
         <Button
-            android:id="@+id/button_crear_otra"
+            android:id="@+id/button_crear_otra_tarea"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"

@@ -12,19 +12,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SuperSexiBoys">
         <activity
+            android:name=".AdaptadorTareaActivity"
+            android:exported="false" />
+        <activity
             android:name=".AgregandoHabitosActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false"></activity>
         <activity
             android:name=".HabitosActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="false"></activity>
         <activity
             android:name=".MetasCompletadasActivity"
             android:exported="false" />
@@ -43,7 +38,6 @@
         <activity
             android:name=".AdaptadorActivity"
             android:exported="false" />
-
         <activity
             android:name=".TareaActivity"
             android:exported="true">
@@ -56,17 +50,15 @@
         <activity
             android:name=".CrearTareaActivity"
             android:exported="false" />
-
         <activity
             android:name=".RegistroActivity"
-            android:exported="false" /> <activity
-        android:name=".MainActivity"
-        android:exported="false" />
-
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
         <activity
             android:name=".TareasTerminadasActivity"
             android:exported="false" />
-
     </application>
 
 </manifest>

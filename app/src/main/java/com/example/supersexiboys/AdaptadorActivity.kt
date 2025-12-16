@@ -10,7 +10,6 @@ import com.example.supersexiboys.basededatos.TareaEntity
 
 class TareaAdapter(
     private val listaTareas: List<TareaEntity>,
-    private val onTaskCompleted: (TareaEntity) -> Unit
 ) : RecyclerView.Adapter<TareaAdapter.TareaViewHolder>() {
 
     class TareaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -33,10 +32,10 @@ class TareaAdapter(
         position: Int
     ) {
         val tarea = listaTareas[position]
-        holder.titulo.text = tarea.titulo
-        holder.descripcion.text = tarea.descripcion
+        holder.titulo.text = tarea.Titulo
+        holder.descripcion.text = tarea.Descripcion
 
-        if (tarea.completada) {
+        if (tarea.Completada) {
             holder.checkBox.visibility = View.GONE
         } else {
             holder.checkBox.visibility = View.VISIBLE

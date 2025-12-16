@@ -48,6 +48,6 @@ class TareasTerminadasActivity : AppCompatActivity() {
 
         binding.recyclerViewTerminadas.layoutManager = LinearLayoutManager(this)
 
-        binding.recyclerViewTerminadas.adapter = TareaAdapter(tareasTerminadas) {}
+        binding.recyclerViewTerminadas.adapter = TareaAdapter(tareasTerminadas)
     }
 }
