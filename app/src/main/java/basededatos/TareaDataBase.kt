@@ -7,3 +7,4 @@ import androidx.room.RoomDatabase
 abstract class TareaDataBase : RoomDatabase() {
     abstract fun tareaDao(): TareaDao
 }
+
