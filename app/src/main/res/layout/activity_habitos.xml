@@ -65,7 +65,16 @@
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
         app:layout_constraintTop_toBottomOf="@+id/metas_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:background="@color/plomo_oscuro"/>
+    
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_habitos"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/linea"
+        app:layout_constraintBottom_toTopOf="@+id/linea2"/>
 
     <Button
         android:id="@+id/nuevo_habito_button"
