@@ -14,11 +14,6 @@
         <activity
             android:name=".AgregandoHabitosActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".HabitosActivity"
@@ -36,7 +31,14 @@
             android:exported="false" />
         <activity
             android:name=".MetasActivity"
-            android:exported="false" />
+            android:exported="true" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+
         <activity
             android:name=".LogueadoActivity"
             android:exported="false" />
@@ -47,12 +49,9 @@
         <activity
             android:name=".TareaActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
+
         <activity
             android:name=".CrearTareaActivity"
             android:exported="false" />
