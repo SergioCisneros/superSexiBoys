@@ -126,10 +126,32 @@ class CrearTareaActivity : AppCompatActivity() {
 
     // Para mostrar la lista de tareas
     private fun mostrarTareas() {
-        val todasLasTareas: List<TareaEntity> = baseDeDatos.tareaDao().getAll()
+        val listaDeTareas = baseDeDatos.tareaDao().getAll()
+
+        // Guardamos las instrucciones en una variable llamada 'accionAlTerminar'
+        val accionAlTerminar = { tareaSeleccionada: TareaEntity ->
+
+            // a) Cambiamos el estado de la tarea a VERDADERO (Terminada)
+            tareaSeleccionada.Completada = true
+
+            // b) Guardamos la fecha/hora actual
+            tareaSeleccionada.FechaTerminada = System.currentTimeMillis()
+
+            // c) Actualizamos la Base de Datos para que no se olvide
+            baseDeDatos.tareaDao().update(tareaSeleccionada)
+
+            // d) Mensaje bonito
+            Toast.makeText(context, "¡Tarea completada!", Toast.LENGTH_SHORT).show()
+
+            // e) ¡TRUCO! Volvemos a llamar a esta misma función para que
+            // la lista se borre y se vuelva a pintar sin la tarea que acabamos de terminar.
+            mostrarTareas()
+        }
 
         binding.recyclerViewTareas.layoutManager = LinearLayoutManager(context)
-        val adapter = AdaptadorTareaActivity(todasLasTareas)
+
+        val adapter = AdaptadorTareaActivity(listaDeTareas, accionAlTerminar)
+
         binding.recyclerViewTareas.adapter = adapter
     }
 
