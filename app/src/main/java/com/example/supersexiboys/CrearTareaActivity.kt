@@ -129,7 +129,7 @@ class CrearTareaActivity : AppCompatActivity() {
         val todasLasTareas: List<TareaEntity> = baseDeDatos.tareaDao().getAll()
 
         binding.recyclerViewTareas.layoutManager = LinearLayoutManager(context)
-        val adapter = TareaAdapter(todasLasTareas)
+        val adapter = AdaptadorTareaActivity(todasLasTareas)
         binding.recyclerViewTareas.adapter = adapter
     }
 

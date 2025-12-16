@@ -26,8 +26,7 @@ class TareasTerminadasActivity : AppCompatActivity() {
             applicationContext,
             TareaDataBase::class.java,
             "tareas-db"
-        ).fallbackToDestructiveMigration() // Agregado para corregir errores de esquema
-            .allowMainThreadQueries().build()
+        ).allowMainThreadQueries().build()
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -48,6 +47,6 @@ class TareasTerminadasActivity : AppCompatActivity() {
 
         binding.recyclerViewTerminadas.layoutManager = LinearLayoutManager(this)
 
-        binding.recyclerViewTerminadas.adapter = TareaAdapter(tareasTerminadas)
+        binding.recyclerViewTerminadas.adapter = AdaptadorTareaActivity(tareasTerminadas)
     }
 }
