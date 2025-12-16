@@ -70,6 +70,7 @@ class AgregandoHabitosActivity : AppCompatActivity() {
             val titulo: String = binding.editTitulo.text.toString()
             val descripcion: String = binding.editDescripcion.text.toString()
             val repeticiones: String = binding.editRepeticiones.text.toString()
+            listaEtiquetas.add(frecuencia)
             if(titulo.isNotEmpty() && frecuencia.isNotEmpty() && repeticiones.toIntOrNull() != null){
                 val cambioAHabitos: Intent = Intent(context, HabitosActivity::class.java)
                 cambioAHabitos.apply {

@@ -8,8 +8,7 @@
     tools:context=".MetasActivity"
     android:orientation="vertical"
     android:weightSum="1"
-    android:background="#6DC8E6"
-    >
+    android:background="#6DC8E6">
 
 
     <LinearLayout
@@ -17,8 +16,7 @@
         android:layout_height="0dp"
         android:layout_weight="0.5"
         android:padding="10dp"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -31,8 +29,7 @@
                 android:gravity="center_vertical"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:background="#11676a"
-                >
+                android:background="#11676a">
 
                 <TextView
                     android:id="@+id/txtNombreUsuario"
@@ -100,8 +97,7 @@
             app:cardCornerRadius="12dp"
             app:cardElevation="6dp"
             android:layout_gravity="center"
-            android:clickable="true"
-            >
+            android:clickable="true">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -215,7 +211,7 @@
                     android:background="#11676a">
 
                     <CheckBox
-                        android:id="@+id/miCheckBox"
+                        android:id="@+id/miCheckBox1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:checked="false"
@@ -245,7 +241,7 @@
                     android:background="#11676a">
 
                     <CheckBox
-                        android:id="@+id/miCheckBox"
+                        android:id="@+id/miCheckBox2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:checked="false"

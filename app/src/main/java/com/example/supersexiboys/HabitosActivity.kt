@@ -38,13 +38,22 @@ class HabitosActivity : AppCompatActivity() {
             startActivity(cambioAAgregarHabito)
         }
 
+        binding.recyclerHabitos.layoutManager =
+            LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+
+        val listaHabitos = mutableListOf<Habito>()
         val tituloRecibido: String? = intent.getStringExtra(ID_PASO_TITULO)
         val descripcionRecibida: String? = intent.getStringExtra(ID_PASO_DESCRIPCION)
         val frecuenciaRecibida: String? = intent.getStringExtra(ID_PASO_FRECUENCIA)
         val repeticionesRecibido: String? = intent.getStringExtra(ID_PASO_REPETICIONES)
         val etiquetasRebida: ArrayList<String>? = intent.getStringArrayListExtra(ID_PASO_ETIQUETAS)
 
-        binding.recyclerHabitos.layoutManager =
-            LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+        if(!tituloRecibido.isNullOrEmpty() && !frecuenciaRecibida.isNullOrEmpty() &&
+            !repeticionesRecibido.isNullOrEmpty() && !etiquetasRebida.isNullOrEmpty()){
+            listaHabitos.add(Habito(tituloRecibido,descripcionRecibida,frecuenciaRecibida,repeticionesRecibido,etiquetasRebida))
+            adapterHabito.addDataCards(listaHabitos)
+            binding.recyclerHabitos.adapter = adapterHabito
+        }
+
     }
 }
