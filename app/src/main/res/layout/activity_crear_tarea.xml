@@ -1,74 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/celeste"
+    android:padding="15dp"
+    >
+
+    <TextView
+        android:id="@+id/procesoText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="EN PROCESO"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardTareaActual"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        app:cardBackgroundColor="@color/verde_oscuro"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="8dp"
+        app:layout_constraintTop_toBottomOf="@id/procesoText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/tituloDeTarea"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Título de la Tarea"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:gravity="center_horizontal"/>
+
+            <TextView
+                android:id="@+id/descripcionDeTarea"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Descripción de lo que tienes que hacer..."
+                android:textColor="#E0E0E0"
+                android:textSize="16sp"
+                android:gravity="center_horizontal"/>
+
+            <TextView
+                android:id="@+id/etiquetaDeTarea"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="#Etiquetas"
+                android:textColor="@color/verde_claro_sergio"
+                android:textSize="14sp"
+                android:textStyle="italic"
+                android:gravity="center_horizontal"/>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                app:cardBackgroundColor="@color/verde_claro_sergio"
+                app:cardCornerRadius="10dp">
+
+                <TextView
+                    android:id="@+id/tiempoDeTarea"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="00:00:00"
+                    android:textColor="@color/white"
+                    android:textSize="28sp"
+                    android:textStyle="bold"
+                    android:gravity="center"/>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
     <LinearLayout
-        android:orientation="vertical"
-        android:padding="20dp"
+        android:id="@+id/layoutBotones"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/textTitulo"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/textDescripcion"
-            android:textSize="20sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/textTiempo"
-            android:textSize="20sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tiempo restante: --:--:--"
-            />
-
-        <TextView
-            android:id="@+id/textEtiquetas"
-            android:textSize="20sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp"
+        app:layout_constraintTop_toBottomOf="@id/cardTareaActual">
 
         <Button
-            android:id="@+id/button_crear_otra"
-            android:layout_width="match_parent"
+            android:id="@+id/buttonCrearOtraTarea"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="Crear Otra Tarea"
-            />
+            android:layout_weight="1"
+            android:layout_marginEnd="5dp"
+            android:backgroundTint="@color/azul_oscuro"
+            android:text="NUEVA TAREA"
+            android:textColor="@color/white" />
 
         <Button
-            android:id="@+id/button_borrar_tareas"
-            android:layout_width="match_parent"
+            android:id="@+id/buttonBorrarTareas"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Borrar Todas las Tareas"
-            android:backgroundTint="?attr/colorPrimary"
-            />
-        <TextView
-            android:id="@+id/titulo_lista_tareas"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tareas Creadas"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="10dp"
-            />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view_tareas"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:nestedScrollingEnabled="false"
-            />
-
+            android:layout_weight="1"
+            android:layout_marginStart="5dp"
+            android:backgroundTint="@color/azul_oscuro"
+            android:text="HISTORIAL"
+            android:textColor="@color/white" />
     </LinearLayout>
-</ScrollView>
+
+    <TextView
+        android:id="@+id/separadorLista"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/plomo_oscuro"
+        app:layout_constraintTop_toBottomOf="@id/layoutBotones"/>
+
+    <TextView
+        android:id="@+id/tvSubtitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Otras Pendientes"
+        android:textColor="@color/plomo_oscuro"
+        android:textStyle="bold"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/separadorLista"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewTareas"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintTop_toBottomOf="@id/tvSubtitulo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
