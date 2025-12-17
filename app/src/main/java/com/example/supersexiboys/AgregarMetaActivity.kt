@@ -62,13 +62,13 @@ class AgregarMetaActivity : AppCompatActivity() {
 
     private fun guardarDatosEnBaseDeDatos() {
         GlobalScope.launch {
-            val ejemplo = MetaEntity(
+            val meta = MetaEntity(
                 id = 0,
                 unTextoColumna = "Texto Ejemplo",
                 unNumeroColumna = 1,
                 unBooleanColumna = true,
             )
-            metaDao.insertAll(ejemplo)
+            metaDao.insertAll(meta)
         }
     }
 

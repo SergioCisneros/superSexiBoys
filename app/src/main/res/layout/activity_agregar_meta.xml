@@ -190,10 +190,39 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
-                        android:text="Etiquetas"
+                        android:text="Etiqueta"
                         android:textColor="@android:color/white"
                         android:layout_gravity="center"
                         android:textStyle="bold" />
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:backgroundTint="#4DD0B5"
+                        app:cardCornerRadius="12dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:orientation="vertical"
+                            android:padding="8dp"
+                            android:visibility="gone"
+                            >
+
+                            <EditText
+                                android:id="@+id/etiquetaNueva"
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:hint="Etiqueta"
+                                android:textColorHint="#d8e4ff"
+                                />
+
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
 
                     <Button
                         android:id="@+id/btnAgregarEtiqueta"
