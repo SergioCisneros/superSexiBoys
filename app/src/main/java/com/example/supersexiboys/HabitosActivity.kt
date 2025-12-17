@@ -7,11 +7,21 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.supersexiboys.AgregandoHabitosActivity.Companion.ID_PASO_DESCRIPCION
+import com.example.supersexiboys.AgregandoHabitosActivity.Companion.ID_PASO_TITULO
+import com.example.supersexiboys.AgregandoHabitosActivity.Companion.ID_PASO_ETIQUETAS
+import com.example.supersexiboys.AgregandoHabitosActivity.Companion.ID_PASO_FRECUENCIA
+import com.example.supersexiboys.AgregandoHabitosActivity.Companion.ID_PASO_REPETICIONES
+import com.example.supersexiboys.adapters.EtiquetaAdapter
+import com.example.supersexiboys.adapters.HabitoAdapter
 import com.example.supersexiboys.databinding.ActivityHabitosBinding
 
 class HabitosActivity : AppCompatActivity() {
     val context: Context = this
     private lateinit var binding: ActivityHabitosBinding
+    val adapterHabito: HabitoAdapter by lazy { HabitoAdapter() }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -26,6 +36,36 @@ class HabitosActivity : AppCompatActivity() {
         binding.nuevoHabitoButton.setOnClickListener {
             val cambioAAgregarHabito: Intent = Intent(context, AgregandoHabitosActivity::class.java)
             startActivity(cambioAAgregarHabito)
+        }
+
+        binding.recyclerHabitos.layoutManager =
+            LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+
+        val listaHabitos = mutableListOf<Habito>()
+        val tituloRecibido: String? = intent.getStringExtra(ID_PASO_TITULO)
+        val descripcionRecibida: String? = intent.getStringExtra(ID_PASO_DESCRIPCION)
+        val frecuenciaRecibida: String? = intent.getStringExtra(ID_PASO_FRECUENCIA)
+        val repeticionesRecibido: String? = intent.getStringExtra(ID_PASO_REPETICIONES)
+        val etiquetasRebida: ArrayList<String>? = intent.getStringArrayListExtra(ID_PASO_ETIQUETAS)
+
+        if(!tituloRecibido.isNullOrEmpty() && !frecuenciaRecibida.isNullOrEmpty() &&
+            !repeticionesRecibido.isNullOrEmpty() && !etiquetasRebida.isNullOrEmpty()){
+            listaHabitos.add(Habito(tituloRecibido,descripcionRecibida,frecuenciaRecibida,repeticionesRecibido,etiquetasRebida))
+            adapterHabito.addDataCards(listaHabitos)
+            binding.recyclerHabitos.adapter = adapterHabito
+        }
+
+        binding.verPerfilButton.setOnClickListener {
+            val cambioALogueadoActivity: Intent = Intent(context, LogueadoActivity::class.java)
+            startActivity(cambioALogueadoActivity)
+        }
+        binding.metasButton.setOnClickListener {
+            val cambioAMetasActivity: Intent = Intent(context, MetasActivity::class.java)
+            startActivity(cambioAMetasActivity)
+        }
+        binding.tareasButton.setOnClickListener {
+            val cambioActivityCrearTareaActivity: Intent = Intent(context, CrearTareaActivity::class.java)
+            startActivity(cambioActivityCrearTareaActivity)
         }
     }
 }
