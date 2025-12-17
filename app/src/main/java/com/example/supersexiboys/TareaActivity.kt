@@ -69,7 +69,7 @@ class TareaActivity : AppCompatActivity() {
             }
 
             //Intent para CrearTareaActivity
-            val intent = Intent(this, CrearTareaActivity ::class.java)
+            val intent = Intent(context, CrearTareaActivity ::class.java)
             intent.putExtra("titulo", textTitulo) //clave, valor
             intent.putExtra("descripcion", textDescripcion)
             intent.putExtra("tiempo", textTiempoLimit)

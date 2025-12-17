@@ -1,5 +1,6 @@
 package com.example.supersexiboys
 
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -8,11 +9,16 @@ import androidx.room.Room
 import com.example.supersexiboys.basededatos.TareaDataBase
 import com.example.supersexiboys.basededatos.TareaEntity
 import com.example.supersexiboys.databinding.ActivityTareasTerminadasBinding
+import com.example.supersexiboys.adapters.AdaptadorTareaActivity
+
 
 class TareasTerminadasActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityTareasTerminadasBinding
     private lateinit var baseDatos: TareaDataBase
+
+    private val context: Context = this
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,11 +30,11 @@ class TareasTerminadasActivity : AppCompatActivity() {
         baseDatos = Room.databaseBuilder(
             applicationContext,
             TareaDataBase::class.java,
-            "tareas-baseDeDatos" // Asegúrate que este nombre sea IGUAL en todas tus activities
+            "tareas-baseDeDatos"
         ).allowMainThreadQueries().build()
 
         binding.btnVolver.setOnClickListener {
-            finish() // Esto cierra la pantalla y te regresa a la anterior
+            finish() //Cierra la actual activity y volvemos a la anterior
         }
 
         mostrarTareasTerminadas()
@@ -43,9 +49,9 @@ class TareasTerminadasActivity : AppCompatActivity() {
     private fun mostrarTareasTerminadas() {
         val tareasTerminadas: List<TareaEntity> = baseDatos.tareaDao().getCompleted()
 
-        binding.recyclerViewTerminadas.layoutManager = LinearLayoutManager(this)
-
-        // Usamos las llaves vacías { } porque aquí no queremos editar nada
-        binding.recyclerViewTerminadas.adapter = AdaptadorTareaActivity(tareasTerminadas) { }
+        val adapter = AdaptadorTareaActivity { }
+        adapter.addDataCards(tareasTerminadas)
+        binding.recyclerViewTerminadas.layoutManager = LinearLayoutManager(context)
+        binding.recyclerViewTerminadas.adapter = adapter
     }
 }
