@@ -2,32 +2,91 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/celeste"
-    android:padding="15dp"
+    android:padding="3dp"
     >
+
+    <LinearLayout
+        android:id="@+id/identifica_usuarioTarea"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:weightSum="10"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+        <Button
+            android:layout_weight="8"
+            android:layout_width="0dp"
+            android:text="Ver perfil"
+            android:backgroundTint="@color/verde_oscuro"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:id="@+id/imagen_perfil"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="40dp"
+            android:src="@drawable/perfilvacio"/>
+    </LinearLayout>
+
+    <Button
+        app:layout_constraintTop_toBottomOf="@+id/identifica_usuarioTarea"
+        app:layout_constraintEnd_toStartOf="@+id/metas_button"
+        android:layout_width="wrap_content"
+        android:text="HÁBITOS"
+        android:layout_margin="15dp"
+        android:backgroundTint="@color/azul_pastel"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/metas_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="@color/azul_pastel"
+        android:text="METAS"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/identifica_usuarioTarea" />
+    <Button
+        app:layout_constraintTop_toBottomOf="@+id/identifica_usuarioTarea"
+        app:layout_constraintStart_toEndOf="@id/metas_button"
+        android:layout_width="wrap_content"
+        android:text="TAREAS"
+        android:layout_margin="15dp"
+        android:backgroundTint="@color/azul_oscuro"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/separadorLista"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/plomo_oscuro"
+        app:layout_constraintTop_toBottomOf="@id/metas_button"
+        />
 
     <TextView
         android:id="@+id/procesoText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="EN PROCESO"
-        android:textColor="@color/black"
-        android:textSize="24sp"
+        android:text="@string/tarea_en_proceso"
+        android:textSize="25sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/separadorLista" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardTareaActual"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="5dp"
         app:cardBackgroundColor="@color/verde_oscuro"
         app:cardCornerRadius="20dp"
-        app:cardElevation="8dp"
+        app:cardElevation="10dp"
         app:layout_constraintTop_toBottomOf="@id/procesoText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -36,7 +95,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:padding="10dp">
 
             <TextView
                 android:id="@+id/tituloDeTarea"
@@ -53,7 +112,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Descripción de lo que tienes que hacer..."
+                android:text="Descripción de la tarea"
                 android:textColor="#E0E0E0"
                 android:textSize="16sp"
                 android:gravity="center_horizontal"/>
@@ -63,7 +122,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="#Etiquetas"
+                android:text="Etiquetas"
                 android:textColor="@color/verde_claro_sergio"
                 android:textSize="14sp"
                 android:textStyle="italic"
@@ -75,7 +134,6 @@
                 android:layout_marginTop="15dp"
                 app:cardBackgroundColor="@color/verde_claro_sergio"
                 app:cardCornerRadius="10dp">
-
                 <TextView
                     android:id="@+id/tiempoDeTarea"
                     android:layout_width="match_parent"
@@ -92,11 +150,11 @@
     </androidx.cardview.widget.CardView>
 
     <LinearLayout
-        android:id="@+id/layoutBotones"
+        android:id="@+id/botonesTareaAyT"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintTop_toBottomOf="@id/cardTareaActual">
 
         <Button
@@ -106,7 +164,7 @@
             android:layout_weight="1"
             android:layout_marginEnd="5dp"
             android:backgroundTint="@color/azul_oscuro"
-            android:text="NUEVA TAREA"
+            android:text="@string/nueva_tarea"
             android:textColor="@color/white" />
 
         <Button
@@ -116,35 +174,30 @@
             android:layout_weight="1"
             android:layout_marginStart="5dp"
             android:backgroundTint="@color/azul_oscuro"
-            android:text="HISTORIAL"
+            android:text="@string/tareas_terminadas"
             android:textColor="@color/white" />
     </LinearLayout>
 
     <TextView
-        android:id="@+id/separadorLista"
+        android:id="@+id/listaDeTareas"
         android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:layout_marginTop="15dp"
-        android:background="@color/plomo_oscuro"
-        app:layout_constraintTop_toBottomOf="@id/layoutBotones"/>
-
-    <TextView
-        android:id="@+id/tvSubtitulo"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Otras Pendientes"
+        android:text="@string/lista_tareas"
         android:textColor="@color/plomo_oscuro"
         android:textStyle="bold"
         android:layout_marginTop="5dp"
+        android:textSize="25sp"
+        android:gravity="left"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/separadorLista"/>
+        app:layout_constraintTop_toBottomOf="@id/botonesTareaAyT"/>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewTareas"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="5dp"
-        app:layout_constraintTop_toBottomOf="@id/tvSubtitulo"
+        app:layout_constraintTop_toBottomOf="@id/listaDeTareas"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>

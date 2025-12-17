@@ -16,6 +16,7 @@ class LogueadoActivity : AppCompatActivity() {
     val context: Context = this
     private lateinit var binding: ActivityLogueadoBinding
     lateinit var auth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -23,15 +24,18 @@ class LogueadoActivity : AppCompatActivity() {
         setContentView(binding.root)
         auth = Firebase.auth
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+
+        // Botón para cerrar sesión
         binding.desloguearse.setOnClickListener {
             auth.signOut()
             val intentCambioAMain: Intent = Intent(context, MainActivity::class.java)
             startActivity(intentCambioAMain)
+        }
+
+        // Botón para ir a crear tarea
+        binding.btnIrACrearTarea.setOnClickListener {
+            val intent = Intent(context, CrearTareaActivity::class.java)
+            startActivity(intent)
         }
     }
 }
