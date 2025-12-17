@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
 
         val currentUser = auth.currentUser
         if (currentUser != null){
-            val intentUsuarioLogueado = Intent(context, LogueadoActivity::class.java)
+            val intentUsuarioLogueado = Intent(context, HabitosActivity::class.java)
             startActivity(intentUsuarioLogueado)
         }
 
@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful){
                     // Nuestro Usuario se Logueo Correctamente
-                    val intentLogueado = Intent(this, LogueadoActivity::class.java)
+                    val intentLogueado = Intent(this, HabitosActivity::class.java)
                     startActivity(intentLogueado)
                 } else {
                     // Nuestro usuario no se pudo Loguear

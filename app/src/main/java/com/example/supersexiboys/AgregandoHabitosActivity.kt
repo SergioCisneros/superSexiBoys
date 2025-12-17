@@ -3,6 +3,7 @@ package com.example.supersexiboys
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -40,17 +41,17 @@ class AgregandoHabitosActivity : AppCompatActivity() {
 
         val listaEtiquetas = mutableListOf<String>()
         var frecuencia: String = ""
+        Log.v("Progra 3 ejemplo debug","si llegamos")
         binding.recyclerEtiquetas.layoutManager =
             LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
         binding.agregarEtiquetaButton.setOnClickListener {
             val nombreDeEtiqueta: String = binding.nombreDeEtiqueta.text.toString()
-            if(nombreDeEtiqueta.isNotEmpty()){
+            if(!nombreDeEtiqueta.isNullOrEmpty()){
                 listaEtiquetas.add(nombreDeEtiqueta)
                 binding.nombreDeEtiqueta.setText("")
                 adapterEtiqueta.addDataCards(listaEtiquetas)
                 binding.recyclerEtiquetas.adapter = adapterEtiqueta
-            }
-        }
+            }        }
 
         binding.buttonDiario.setOnClickListener {
             binding.buttonDiario.backgroundTintList = ContextCompat.getColorStateList(this, R.color.azul_oscuro)

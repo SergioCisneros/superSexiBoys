@@ -18,6 +18,7 @@
         android:layout_margin="15dp"
         android:layout_height="wrap_content">
         <Button
+            android:id="@+id/ver_perfil_button"
             android:layout_weight="8"
             android:layout_width="0dp"
             android:text="Ver perfil"
@@ -51,6 +52,7 @@
         android:backgroundTint="@color/azul_pastel"
         android:layout_height="wrap_content"/>
     <Button
+        android:id="@+id/tareas_button"
         app:layout_constraintTop_toBottomOf="@+id/identifica_usuario"
         app:layout_constraintStart_toEndOf="@id/metas_button"
         android:layout_width="wrap_content"

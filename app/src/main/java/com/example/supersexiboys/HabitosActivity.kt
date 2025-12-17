@@ -55,5 +55,17 @@ class HabitosActivity : AppCompatActivity() {
             binding.recyclerHabitos.adapter = adapterHabito
         }
 
+        binding.verPerfilButton.setOnClickListener {
+            val cambioALogueadoActivity: Intent = Intent(context, LogueadoActivity::class.java)
+            startActivity(cambioALogueadoActivity)
+        }
+        binding.metasButton.setOnClickListener {
+            val cambioAMetasActivity: Intent = Intent(context, MetasActivity::class.java)
+            startActivity(cambioAMetasActivity)
+        }
+        binding.tareasButton.setOnClickListener {
+            val cambioActivityCrearTareaActivity: Intent = Intent(context, CrearTareaActivity::class.java)
+            startActivity(cambioActivityCrearTareaActivity)
+        }
     }
 }
