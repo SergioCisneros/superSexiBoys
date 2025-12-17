@@ -4,12 +4,12 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.supersexiboys.basededatos.HabitoDao
 import com.example.supersexiboys.databinding.AdapterEtiquetaBinding
 
 class EtiquetaAdapter: RecyclerView.Adapter<EtiquetaAdapter.EtiquetaCardViewHolder>() {
     private val dataCards = mutableListOf<String>()
     private var context: Context? = null
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EtiquetaCardViewHolder {
         context = parent.context
         return EtiquetaCardViewHolder(

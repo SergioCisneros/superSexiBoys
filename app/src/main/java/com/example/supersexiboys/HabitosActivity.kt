@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -11,17 +12,21 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 import basededatos.HabitoDataBase
 import com.example.supersexiboys.AgregandoHabitosActivity.Companion.ID_PASO_DESCRIPCION
 import com.example.supersexiboys.AgregandoHabitosActivity.Companion.ID_PASO_TITULO
 import com.example.supersexiboys.AgregandoHabitosActivity.Companion.ID_PASO_ETIQUETAS
 import com.example.supersexiboys.AgregandoHabitosActivity.Companion.ID_PASO_FRECUENCIA
 import com.example.supersexiboys.AgregandoHabitosActivity.Companion.ID_PASO_REPETICIONES
-import com.example.supersexiboys.adapters.EtiquetaAdapter
 import com.example.supersexiboys.adapters.HabitoAdapter
 import com.example.supersexiboys.basededatos.HabitoDao
 import com.example.supersexiboys.basededatos.HabitoEntity
 import com.example.supersexiboys.databinding.ActivityHabitosBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -31,7 +36,6 @@ import kotlinx.coroutines.withContext
 class HabitosActivity : AppCompatActivity() {
     val context: Context = this
     private lateinit var binding: ActivityHabitosBinding
-    val adapterHabito: HabitoAdapter by lazy { HabitoAdapter() }
 
     private lateinit var habitoDao: HabitoDao
 
@@ -46,7 +50,7 @@ class HabitosActivity : AppCompatActivity() {
 
         val habitoDataBase = Room.databaseBuilder(
             context, HabitoDataBase::class.java,DATABASE_NAME
-        ).build()
+        ).allowMainThreadQueries().build()
 
         habitoDao = habitoDataBase.habitoDao()
 
@@ -60,11 +64,7 @@ class HabitosActivity : AppCompatActivity() {
             val cambioAAgregarHabito: Intent = Intent(context, AgregandoHabitosActivity::class.java)
             startActivity(cambioAAgregarHabito)
         }
-        val listaHabitos = obtenerDatosEnBaseDeDatos()
-        binding.recyclerHabitos.layoutManager =
-            LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-        adapterHabito.addDataCards(listaHabitos)
-        binding.recyclerHabitos.adapter = adapterHabito
+
 
         val tituloRecibido: String? = intent.getStringExtra(ID_PASO_TITULO)
         val descripcionRecibida: String? = intent.getStringExtra(ID_PASO_DESCRIPCION)
@@ -72,16 +72,38 @@ class HabitosActivity : AppCompatActivity() {
         val repeticionesRecibido: String? = intent.getStringExtra(ID_PASO_REPETICIONES)
         val etiquetasRebida: ArrayList<String>? = intent.getStringArrayListExtra(ID_PASO_ETIQUETAS)
 
+        Log.v("antes de userId","todobien")
+        val userId = FirebaseAuth.getInstance().currentUser?.uid ?: ""
+        Log.v("despues de userId","todobien")
+        binding.recyclerHabitos.layoutManager =
+            LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+        Log.v("despues de layoutM","todobien")
+
+        Log.v("despues de listaHabitos","todobien")
+        val accionActualiza = { habitoSeleccionado: HabitoEntity ->
+            habitoDataBase.habitoDao().update(habitoSeleccionado) //Actualizamos la baseDeDatos
+        }
+        val adapterHabito = HabitoAdapter(accionActualiza)
+        val listaHabitos:List<HabitoEntity> = obtenerDatosEnBaseDeDatos()
+        adapterHabito.addDataCards(listaHabitos)
+        binding.recyclerHabitos.adapter = adapterHabito
+
+        Log.v("despues de addDatacards","todobien")
+
+        Log.v("despues de adapter","todobien")
+
         if(!tituloRecibido.isNullOrEmpty() && !frecuenciaRecibida.isNullOrEmpty() &&
             !repeticionesRecibido.isNullOrEmpty() && !etiquetasRebida.isNullOrEmpty()){
             GlobalScope.launch {
                 val habito = HabitoEntity(
                     id = 0,
+                    usuarioId = userId,
                     titulo = tituloRecibido,
                     descripcion = descripcionRecibida.toString(),
                     frecuencia = frecuenciaRecibida,
-                    repeticiones = repeticionesRecibido,
-                    etiquetas = fromList(etiquetasRebida)
+                    repeticiones = repeticionesRecibido.toInt(),
+                    etiquetas = fromList(etiquetasRebida),
+                    vecesHecho = 0
                 )
                 habitoDao.insertAll(habito)
             }
@@ -104,10 +126,11 @@ class HabitosActivity : AppCompatActivity() {
     }
 
     private fun obtenerDatosEnBaseDeDatos():List<HabitoEntity>  {
+        val userId = FirebaseAuth.getInstance().currentUser?.uid ?: ""
         var ejemplo: List<HabitoEntity> = listOf()
         runBlocking {
             withContext(Dispatchers.IO){
-                ejemplo = habitoDao.getAll()
+                ejemplo = habitoDao.getAllByUser(userId)
             }
         }
         return ejemplo
