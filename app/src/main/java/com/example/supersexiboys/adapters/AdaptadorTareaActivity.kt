@@ -45,14 +45,10 @@ class AdaptadorTareaActivity(
             binding.tvTitulo.text = tarea.Titulo
             binding.descripcion.text = tarea.Descripcion
 
-            // Forzamos que el campo no se vea
-
-            // 2. Lógica de visibilidad según estado
             if (tarea.Completada) {
-                // Si la tarea está completada (Historial)
+                // Si la tarea está completada se va al historia;
                 binding.checkTerminar.visibility = View.GONE
 
-                // Tachado del título
                 binding.tvTitulo.paintFlags = binding.tvTitulo.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
 
                 // Mostrar fecha de finalización
@@ -72,7 +68,7 @@ class AdaptadorTareaActivity(
                 binding.tiempo.text = "Límite: ${tarea.TiempoLimite}"
             }
 
-            // 3. Evento de click para marcar como terminada
+            //click para marcar como terminada
             binding.checkTerminar.setOnClickListener {
                 if (binding.checkTerminar.isChecked) {
                     onCheckClick(tarea)

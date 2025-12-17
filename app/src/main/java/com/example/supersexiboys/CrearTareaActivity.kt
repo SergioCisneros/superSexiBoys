@@ -7,7 +7,6 @@ import android.os.CountDownTimer //Temporizador hacia atras
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager //Para el RECYCLERVIEW
 import androidx.room.Room
 import com.example.supersexiboys.basededatos.TareaDataBase
@@ -58,6 +57,33 @@ class CrearTareaActivity : AppCompatActivity() {
                 val milisegNecesarios = (horas * 60 + minutos) * 60 * 1000
                 iniciarCronometro(milisegNecesarios)
             }
+        }
+
+        // CODIGO AGREGADO: MOSTRAR IMAGEN DE PERFIL
+        val user = FirebaseAuth.getInstance().currentUser
+        val nombreAvatar = user?.photoUrl.toString() // Obtenemos el nombre guardado en Firebase
+
+        when (nombreAvatar) {
+            "avatar_uno" -> binding.imagenPerfil.setImageResource(R.drawable.avatar_uno)
+            "avatar_dos" -> binding.imagenPerfil.setImageResource(R.drawable.avatar_dos)
+            "avatar_tres" -> binding.imagenPerfil.setImageResource(R.drawable.avatar_tres)
+            else -> binding.imagenPerfil.setImageResource(R.drawable.perfilvacio)
+        }
+
+        //  NAVEGACIÓN A OTRAS PANTALLAS
+        binding.metasButton.setOnClickListener {
+            val intent = Intent(context, MetasActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.habitosButton.setOnClickListener {
+            val intent = Intent(context, HabitosActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.btnVerPerfil.setOnClickListener {
+            val intent = Intent(context, LogueadoActivity::class.java)
+            startActivity(intent)
         }
 
         binding.buttonCrearOtraTarea.setOnClickListener {

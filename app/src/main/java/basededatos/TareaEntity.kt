@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 @Entity
 data class TareaEntity(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
-    @ColumnInfo(name = "usuario_id") val usuarioId: String, //
+    @ColumnInfo(name = "usuario_id") val usuarioId: String,
     @ColumnInfo(name = "titulo") val Titulo: String,
     @ColumnInfo(name = "descripcion") val Descripcion: String,
     @ColumnInfo(name = "tiempo_limite") val TiempoLimite: String,

@@ -61,7 +61,7 @@ class TareaActivity : AppCompatActivity() {
 
             // Objeto Tarea
             var nuevaTarea = TareaEntity(
-                usuarioId = userId, // <--- Relacionamos la tarea con el ID de Firebase
+                usuarioId = userId, //  Relacionamos la tarea con el ID de Firebase
                 Titulo = textTitulo,
                 Descripcion = textDescripcion,
                 TiempoLimite = textTiempoLimit,

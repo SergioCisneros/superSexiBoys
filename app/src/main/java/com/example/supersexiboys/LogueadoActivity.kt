@@ -24,6 +24,19 @@ class LogueadoActivity : AppCompatActivity() {
         setContentView(binding.root)
         auth = Firebase.auth
 
+        // LOGICA PARA MOSTRAR IMAGEN
+        val usuarioActual = auth.currentUser
+
+        // Recuperamos la "PhotoUrl" que en realidad es el nombre de nuestra imagen (ej: "avatar_uno")
+        val nombreAvatar = usuarioActual?.photoUrl.toString()
+
+        when (nombreAvatar) {
+            "avatar_uno" -> binding.imgPerfilUsuario.setImageResource(R.drawable.avatar_uno)
+            "avatar_dos" -> binding.imgPerfilUsuario.setImageResource(R.drawable.avatar_dos)
+            "avatar_tres" -> binding.imgPerfilUsuario.setImageResource(R.drawable.avatar_tres)
+            else -> binding.imgPerfilUsuario.setImageResource(R.drawable.perfilvacio)
+        }
+
 
         // Botón para cerrar sesión
         binding.desloguearse.setOnClickListener {

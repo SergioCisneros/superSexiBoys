@@ -5,25 +5,77 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp"
+    android:background="@color/celeste"
+    android:padding="15dp"
     tools:context=".LogueadoActivity">
 
-    <Button
-        android:id="@+id/desloguearse"
+    <TextView
+        android:id="@+id/tituloPerfil"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/cerrar_sesion"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:gravity="center"
+        android:text="Mi Perfil"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/linea_superior"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@color/plomo_oscuro"
+        app:layout_constraintTop_toBottomOf="@+id/tituloPerfil"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardPerfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        app:cardCornerRadius="75dp"
+        app:cardElevation="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/linea_superior"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/imgPerfilUsuario"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/perfilvacio" />
+    </androidx.cardview.widget.CardView>
 
     <Button
         android:id="@+id/btnIrACrearTarea"
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="50dp"
         android:text="IR A CREAR TAREA"
         android:backgroundTint="@color/azul_oscuro"
-        app:layout_constraintTop_toBottomOf="@id/desloguearse"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/cardPerfil"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_marginBottom="25dp"
+        android:background="@color/plomo_oscuro"
+        app:layout_constraintBottom_toTopOf="@+id/desloguearse"/>
+
+    <Button
+        android:id="@+id/desloguearse"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:text="@string/cerrar_sesion"
+        android:backgroundTint="@color/azul_oscuro"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -48,19 +48,19 @@ class TareasTerminadasActivity : AppCompatActivity() {
     }
 
     private fun mostrarTareasTerminadas() {
-        // 1. Obtener el ID del usuario actual de Firebase
+        // Obtener el ID del usuario actual de Firebase
         val user = FirebaseAuth.getInstance().currentUser
         val userId = user?.uid ?: ""
 
-        // 2. Validar que el usuario no esté vacío (opcional pero recomendado)
+        // Validar que el usuario no esté vacío (opcional pero recomendado)
         if (userId.isEmpty()) {
             return
         }
 
-        // 3. Usar la consulta filtrada por usuario que ya tienes en tu DAO
+        // Usar la consulta filtrada por usuario que ya tienes en tu DAO
         val tareasTerminadas: List<TareaEntity> = baseDatos.tareaDao().getCompletedByUser(userId)
 
-        // 4. Configurar el adaptador con la lista filtrada
+        //Configurar el adaptador con la lista filtrada
         val adapter = AdaptadorTareaActivity {}
         adapter.addDataCards(tareasTerminadas)
         binding.recyclerViewTerminadas.layoutManager = LinearLayoutManager(context)
