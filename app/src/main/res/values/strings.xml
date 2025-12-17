@@ -17,6 +17,12 @@
     <string name="texto_eqtiquetas">Etiquetas</string>
     <string name="texto_plus">+</string>
     <string name="texto_guardar">Guardar</string>
+    <string name="tarea_en_proceso">Tarea en proceso</string>
+    <string name="nueva_tarea">Nueva Tarea</string>
+    <string name="tareas_terminadas">Tareas Terminadas</string>
+    <string name="lista_tareas">Lista de tareas</string>
+
+
 
     <string name="ver_perfil"> Ver Perfil </string>
 

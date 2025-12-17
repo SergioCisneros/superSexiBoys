@@ -41,16 +41,19 @@
         android:layout_margin="15dp"
         android:backgroundTint="@color/azul_oscuro"
         android:layout_height="wrap_content"/>
+
     <Button
         android:id="@+id/metas_button"
-        app:layout_constraintTop_toBottomOf="@+id/identifica_usuario"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_width="wrap_content"
-        android:text="METAS"
+        android:layout_height="wrap_content"
         android:layout_margin="15dp"
+        android:layout_marginTop="12dp"
         android:backgroundTint="@color/azul_pastel"
-        android:layout_height="wrap_content"/>
+        android:text="METAS"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/identifica_usuario" />
+
     <Button
         android:id="@+id/tareas_button"
         app:layout_constraintTop_toBottomOf="@+id/identifica_usuario"

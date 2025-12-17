@@ -4,15 +4,18 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer //Temporizador hacia atras
-import java.util.concurrent.TimeUnit //Convertir unidades de tiempo
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager //Para el RECYCLERVIEW
 import androidx.room.Room
 import com.example.supersexiboys.basededatos.TareaDataBase
 import com.example.supersexiboys.basededatos.TareaEntity
 import com.example.supersexiboys.databinding.ActivityCrearTareaBinding
+import com.example.supersexiboys.adapters.AdaptadorTareaActivity
+import com.google.firebase.auth.FirebaseAuth // Importante para filtrar por usuario
+
 
 class CrearTareaActivity : AppCompatActivity() {
 
@@ -84,7 +87,6 @@ class CrearTareaActivity : AppCompatActivity() {
                 val horas = millisRestantes/1000/3600 // mili a hora
                 val minutos = (millisRestantes/1000/60) % 60
                 val segundos = (millisRestantes/1000) % 60
-
                 val tiempoFormateado = String.format("%02d:%02d:%02d", horas, minutos, segundos)
                 binding.tiempoDeTarea.text = "Tiempo restante: $tiempoFormateado"
             }
@@ -95,7 +97,11 @@ class CrearTareaActivity : AppCompatActivity() {
                 contador?.cancel()
 
                 if(tareaId != -1){
-                    val tareasPendientes = baseDeDatos.tareaDao().getAll() //obtener las tareas
+                    // Obtenemos el ID del usuario actual
+                    val userId = FirebaseAuth.getInstance().currentUser?.uid ?: ""
+
+                    // Filtramos por usuario para evitar errores de sesión
+                    val tareasPendientes = baseDeDatos.tareaDao().getAllByUser(userId)
                     val tareaActual = tareasPendientes.find {it.id == tareaId} //buscamos la tarea que cumpla con el id
 
                     if(tareaActual != null ) {
@@ -124,38 +130,40 @@ class CrearTareaActivity : AppCompatActivity() {
         mostrarTareas()
     }
 
-    // Para mostrar la lista de tareas
+    //Leer tareas, ponerlas en el recycler view y marcar como completada
     private fun mostrarTareas() {
-        val listaDeTareas = baseDeDatos.tareaDao().getAll()
+        // Obtenemos el ID del usuario actual para filtrar la lista
+        val userId = FirebaseAuth.getInstance().currentUser?.uid ?: ""
 
-        // Guardamos las instrucciones en una variable llamada 'accionAlTerminar'
+        // Usamos la función filtrada por usuario
+        val listaDeTareas = baseDeDatos.tareaDao().getAllByUser(userId)
+
         val accionAlTerminar = { tareaSeleccionada: TareaEntity ->
 
-            // a) Cambiamos el estado de la tarea a VERDADERO (Terminada)
-            tareaSeleccionada.Completada = true
-
-            // b) Guardamos la fecha/hora actual
+            tareaSeleccionada.Completada = true //terminada
             tareaSeleccionada.FechaTerminada = System.currentTimeMillis()
 
-            // c) Actualizamos la Base de Datos para que no se olvide
-            baseDeDatos.tareaDao().update(tareaSeleccionada)
-
-            // d) Mensaje bonito
+            baseDeDatos.tareaDao().update(tareaSeleccionada) //Actualizamos la baseDeDatos
             Toast.makeText(context, "¡Tarea completada!", Toast.LENGTH_SHORT).show()
 
-            // e) ¡TRUCO! Volvemos a llamar a esta misma función para que
-            // la lista se borre y se vuelva a pintar sin la tarea que acabamos de terminar.
+            if (tareaSeleccionada.id == tareaId) {
+                binding.tituloDeTarea.text = "Tarea actual terminada"
+                binding.tiempoDeTarea.text = "Completado" // Opcional: Cambiar el texto del tiempo
+
+                contador?.cancel()
+            }
+
             mostrarTareas()
         }
 
+        //Configurar el adapter
         binding.recyclerViewTareas.layoutManager = LinearLayoutManager(context)
-
-        val adapter = AdaptadorTareaActivity(listaDeTareas, accionAlTerminar)
-
+        val adapter = AdaptadorTareaActivity(accionAlTerminar)
+        adapter.addDataCards(listaDeTareas)
         binding.recyclerViewTareas.adapter = adapter
     }
 
-    //Al cerrar la activity detener contador
+    //Al cerrar la activity detener contador y evitar errores
     override fun onDestroy() {
         super.onDestroy()
         contador?.cancel()

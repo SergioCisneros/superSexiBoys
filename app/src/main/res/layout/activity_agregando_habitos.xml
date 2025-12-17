@@ -7,34 +7,11 @@
     android:layout_height="match_parent"
     android:background="@color/celeste"
     tools:context=".HabitosActivity">
-    <LinearLayout
-        android:id="@+id/identifica_usuario"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_width="match_parent"
-        android:weightSum="10"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:layout_margin="15dp"
-        android:layout_height="wrap_content">
-        <Button
-            android:layout_weight="8"
-            android:layout_width="0dp"
-            android:text="Ver perfil"
-            android:backgroundTint="@color/verde_oscuro"
-            android:layout_height="wrap_content"/>
-        <ImageView
-            android:id="@+id/imagen_perfil"
-            android:layout_width="0dp"
-            android:layout_weight="2"
-            android:layout_height="40dp"
-            android:src="@drawable/perfilvacio"/>
-    </LinearLayout>
+
 
     <TextView
         android:id="@+id/agrega_habito_text"
-        app:layout_constraintTop_toBottomOf="@+id/identifica_usuario"
+        app:layout_constraintTop_toTopOf="parent"
         android:layout_width="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

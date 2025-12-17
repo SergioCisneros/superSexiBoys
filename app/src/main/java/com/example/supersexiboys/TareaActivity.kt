@@ -10,6 +10,7 @@ import androidx.room.Room // Room para SQLiTE
 import com.example.supersexiboys.basededatos.TareaDataBase // DB
 import com.example.supersexiboys.basededatos.TareaEntity // Tabla
 import com.example.supersexiboys.databinding.ActivityTareaBinding // binding
+import com.google.firebase.auth.FirebaseAuth // Necesario para identificar al usuario
 
 class TareaActivity : AppCompatActivity() {
     private lateinit var binding: ActivityTareaBinding
@@ -28,6 +29,16 @@ class TareaActivity : AppCompatActivity() {
             val textDescripcion: String = binding.editDescripcion.text.toString().trim()
             val textTiempoLimit = binding.editTiempoLimite.text.toString().trim()
             val textEtiquetas: String = "Mis etiquetas"
+
+            // --- Lógica para obtener el ID del usuario de Firebase ---
+            val user = FirebaseAuth.getInstance().currentUser
+            val userId = user?.uid ?: ""
+
+            if (userId.isEmpty()) {
+                Toast.makeText(context, "Error: No hay sesión activa", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            // -------------------------------------------------------
 
             //Si faltan datos
             if (textTitulo.isEmpty() || textDescripcion.isEmpty() || textTiempoLimit.isEmpty()) {
@@ -51,13 +62,16 @@ class TareaActivity : AppCompatActivity() {
 
             // Objeto Tarea
             var nuevaTarea = TareaEntity(
+                usuarioId = userId, // <--- Relacionamos la tarea con el ID de Firebase
                 Titulo = textTitulo,
                 Descripcion = textDescripcion,
                 TiempoLimite = textTiempoLimit,
                 Etiquetas = textEtiquetas
             )
             baseDeDatos.tareaDao().insertAll(nuevaTarea) //Se pasan los datos al Dao para guardarlos
-            val tareasPendientes = baseDeDatos.tareaDao().getAll() //Lista de tareas
+
+            // Filtramos la búsqueda para encontrar la tarea recién creada por el usuario actual
+            val tareasPendientes = baseDeDatos.tareaDao().getAllByUser(userId) //Lista de tareas del usuario
 
             //Encontrar tareas
             var tareaCreada: TareaEntity? = null
@@ -69,7 +83,7 @@ class TareaActivity : AppCompatActivity() {
             }
 
             //Intent para CrearTareaActivity
-            val intent = Intent(this, CrearTareaActivity ::class.java)
+            val intent = Intent(context, CrearTareaActivity ::class.java)
             intent.putExtra("titulo", textTitulo) //clave, valor
             intent.putExtra("descripcion", textDescripcion)
             intent.putExtra("tiempo", textTiempoLimit)
