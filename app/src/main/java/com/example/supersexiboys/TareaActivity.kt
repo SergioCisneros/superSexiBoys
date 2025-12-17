@@ -1,6 +1,6 @@
 package com.example.supersexiboys
 
-import android.content.Context // Necesario para los intents
+import android.content.Context // Intents
 import android.content.Intent // Comunicacion
 import android.os.Bundle // Guardar datos
 import android.widget.Toast // Mensajes de notificacion
@@ -9,8 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.room.Room // Room para SQLiTE
 import com.example.supersexiboys.basededatos.TareaDataBase // DB
 import com.example.supersexiboys.basededatos.TareaEntity // Tabla
-import com.example.supersexiboys.databinding.ActivityTareaBinding // binding
-import com.google.firebase.auth.FirebaseAuth // Necesario para identificar al usuario
+import com.example.supersexiboys.databinding.ActivityTareaBinding // Binding
+import com.google.firebase.auth.FirebaseAuth // Identificar Usuario
 
 class TareaActivity : AppCompatActivity() {
     private lateinit var binding: ActivityTareaBinding
@@ -23,6 +23,7 @@ class TareaActivity : AppCompatActivity() {
         binding = ActivityTareaBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //Boton Guardar
         binding.buttonGuardarTarea.setOnClickListener {
 
             val textTitulo: String = binding.editTitulo.text.toString().trim()
@@ -30,7 +31,7 @@ class TareaActivity : AppCompatActivity() {
             val textTiempoLimit = binding.editTiempoLimite.text.toString().trim()
             val textEtiquetas: String = "Mis etiquetas"
 
-            // --- Lógica para obtener el ID del usuario de Firebase ---
+          //Lógica para obtener el ID del usuario de Firebase
             val user = FirebaseAuth.getInstance().currentUser
             val userId = user?.uid ?: ""
 
@@ -38,7 +39,6 @@ class TareaActivity : AppCompatActivity() {
                 Toast.makeText(context, "Error: No hay sesión activa", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            // -------------------------------------------------------
 
             //Si faltan datos
             if (textTitulo.isEmpty() || textDescripcion.isEmpty() || textTiempoLimit.isEmpty()) {

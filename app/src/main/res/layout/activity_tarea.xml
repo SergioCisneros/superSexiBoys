@@ -9,7 +9,6 @@
     android:padding="15dp"
     tools:context=".TareaActivity"
     >
-
     <TextView
         android:id="@+id/tareaText"
         android:layout_width="match_parent"

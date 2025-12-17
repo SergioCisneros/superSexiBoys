@@ -73,9 +73,8 @@
                 android:id="@+id/checkTerminar"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:textSize="10sp"
-                android:enabled="false"
-                android:button="@drawable/circuloblanco"/>
+                android:background="@drawable/checkbox_tarea"
+                android:button="@null"/>
 
 
         </LinearLayout>
