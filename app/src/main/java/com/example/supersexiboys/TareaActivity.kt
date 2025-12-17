@@ -29,7 +29,6 @@ class TareaActivity : AppCompatActivity() {
             val textTitulo: String = binding.editTitulo.text.toString().trim()
             val textDescripcion: String = binding.editDescripcion.text.toString().trim()
             val textTiempoLimit = binding.editTiempoLimite.text.toString().trim()
-            val textEtiquetas: String = "Mis etiquetas"
 
           //Lógica para obtener el ID del usuario de Firebase
             val user = FirebaseAuth.getInstance().currentUser
@@ -66,7 +65,6 @@ class TareaActivity : AppCompatActivity() {
                 Titulo = textTitulo,
                 Descripcion = textDescripcion,
                 TiempoLimite = textTiempoLimit,
-                Etiquetas = textEtiquetas
             )
             baseDeDatos.tareaDao().insertAll(nuevaTarea) //Se pasan los datos al Dao para guardarlos
 
@@ -87,7 +85,6 @@ class TareaActivity : AppCompatActivity() {
             intent.putExtra("titulo", textTitulo) //clave, valor
             intent.putExtra("descripcion", textDescripcion)
             intent.putExtra("tiempo", textTiempoLimit)
-            intent.putExtra("etiquetas", textEtiquetas)
 
             if (tareaCreada != null) {
                 intent.putExtra("tareaId", tareaCreada.id)

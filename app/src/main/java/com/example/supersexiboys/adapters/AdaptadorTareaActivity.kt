@@ -3,6 +3,7 @@ package com.example.supersexiboys.adapters
 import android.content.Context
 import android.graphics.Paint
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.supersexiboys.basededatos.TareaEntity
@@ -44,34 +45,34 @@ class AdaptadorTareaActivity(
             binding.tvTitulo.text = tarea.Titulo
             binding.descripcion.text = tarea.Descripcion
 
-            // 2. Lógica de visibilidad y estado del CheckBox personalizado
+            // Forzamos que el campo no se vea
+
+            // 2. Lógica de visibilidad según estado
             if (tarea.Completada) {
-                // OCULTAR en el historial (TareasTerminadasActivity)
-                binding.checkTerminar.visibility = android.view.View.GONE
+                // Si la tarea está completada (Historial)
+                binding.checkTerminar.visibility = View.GONE
 
                 // Tachado del título
-                binding.tvTitulo.paintFlags = binding.tvTitulo.paintFlags or android.graphics.Paint.STRIKE_THRU_TEXT_FLAG
+                binding.tvTitulo.paintFlags = binding.tvTitulo.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
 
-                // Mostrar fecha de cuando se terminó
+                // Mostrar fecha de finalización
                 if (tarea.FechaTerminada != null) {
-                    val formato = java.text.SimpleDateFormat("dd/MM/yyyy HH:mm", java.util.Locale.getDefault())
-                    binding.tiempo.text = "Terminada: ${formato.format(java.util.Date(tarea.FechaTerminada!!))}"
+                    val formato = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
+                    binding.tiempo.text = "Terminada: ${formato.format(Date(tarea.FechaTerminada!!))}"
                 }
             } else {
-                // MOSTRAR en tareas pendientes (CrearTareaActivity)
-                binding.checkTerminar.visibility = android.view.View.VISIBLE
-
-                // ESTADO: Al ser personalizado, nos aseguramos que empiece desmarcado
+                // Si la tarea está pendiente
+                binding.checkTerminar.visibility = View.VISIBLE
                 binding.checkTerminar.isChecked = false
                 binding.checkTerminar.isEnabled = true
 
                 // Quitar tachado si la vista se está reciclando
-                binding.tvTitulo.paintFlags = binding.tvTitulo.paintFlags and android.graphics.Paint.STRIKE_THRU_TEXT_FLAG.inv()
+                binding.tvTitulo.paintFlags = binding.tvTitulo.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
 
                 binding.tiempo.text = "Límite: ${tarea.TiempoLimite}"
             }
 
-            // 3. Configurar el evento de click (solo se activará si el check es visible)
+            // 3. Evento de click para marcar como terminada
             binding.checkTerminar.setOnClickListener {
                 if (binding.checkTerminar.isChecked) {
                     onCheckClick(tarea)

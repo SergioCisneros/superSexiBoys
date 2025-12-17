@@ -26,7 +26,6 @@ class CrearTareaActivity : AppCompatActivity() {
     private var tituloTarea: String? = null
     private var descripcionTarea: String? = null
     private var tiempoTarea: String? = null
-    private var etiquetasTarea: String? = null
     private var tareaId: Int = -1 // Para identificar tareas nuevas y existentes
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,12 +44,10 @@ class CrearTareaActivity : AppCompatActivity() {
         tituloTarea = intent.getStringExtra("titulo")
         descripcionTarea = intent.getStringExtra("descripcion")
         tiempoTarea = intent.getStringExtra("tiempo")
-        etiquetasTarea = intent.getStringExtra("etiquetas")
         tareaId = intent.getIntExtra("tareaId", -1)
 
         binding.tituloDeTarea.text = tituloTarea ?: "" //Usamos la elvish function
         binding.descripcionDeTarea.text = descripcionTarea ?: ""
-        binding.etiquetaDeTarea.text = etiquetasTarea ?: ""
 
         //Iniciar Temporizador
         if (tiempoTarea != null && tareaId != -1) {
