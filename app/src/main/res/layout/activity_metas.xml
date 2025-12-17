@@ -38,7 +38,7 @@
                     android:id="@+id/ver_perfil_button"
                     android:layout_weight="8"
                     android:layout_width="0dp"
-                    android:text="Ver perfil"
+                    android:text="@string/ver_perfil"
                     android:backgroundTint="@color/verde_oscuro"
                     android:layout_height="wrap_content"/>
                 <ImageView
@@ -54,7 +54,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/identifica_usuario"
                 app:layout_constraintEnd_toStartOf="@+id/metas_button"
                 android:layout_width="wrap_content"
-                android:text="HÁBITOS"
+                android:text="@string/btn_habitos"
                 android:layout_margin="15dp"
                 android:backgroundTint="@color/azul_pastel"
                 android:layout_height="wrap_content"/>
@@ -64,7 +64,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_width="wrap_content"
-                android:text="METAS"
+                android:text="@string/btn_metas"
                 android:layout_margin="15dp"
                 android:backgroundTint="@color/azul_oscuro"
                 android:layout_height="wrap_content"/>
@@ -73,7 +73,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/identifica_usuario"
                 app:layout_constraintStart_toEndOf="@id/metas_button"
                 android:layout_width="wrap_content"
-                android:text="TAREAS"
+                android:text="@string/btn_tareas"
                 android:layout_margin="15dp"
                 android:backgroundTint="@color/azul_pastel"
                 android:layout_height="wrap_content"/>
@@ -88,14 +88,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:background="@color/plomo_oscuro"/>
 
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-
-
 
     </LinearLayout>
 
@@ -142,11 +135,6 @@
                     android:padding="12dp"
                     android:background="#11676a">
 
-                    <ImageView
-                        android:id="@+id/imagenMeta"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:src="@drawable/logobalanza"/>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -157,9 +145,9 @@
 
                         <TextView
                             android:id="@+id/textoMeta"
-                            android:text=""
-                            android:hint="TITULO META"
-                            android:textColorHint="@color/white"
+                            android:text="@string/titulo_meta"
+
+
                             android:layout_gravity="center"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -169,19 +157,17 @@
 
                         <TextView
                             android:id="@+id/actividades"
-                            android:textColorHint="#EBC335"
-                            android:text=""
+                            android:textSize="18dp"
+                            android:text="@string/texto_metas_actividades"
                             android:layout_width="wrap_content"
-                            android:hint="Actividades"
                             android:layout_height="wrap_content"
                             android:textColor="#EBC335"/>
 
 
                         <TextView
                             android:id="@+id/etiqueta"
-                            android:text=""
-                            android:textSize="12sp"
-                            android:hint="etiqueta"
+                            android:text="@string/texto_meta_etiqueta"
+                            android:textSize="14dp"
                             android:textColorHint="#f28d00"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -189,14 +175,30 @@
 
                     </LinearLayout>
 
-                    <ProgressBar
-                        android:id="@+id/progresoMeta"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:indeterminate="false"
-                        android:max="100"
-                        android:progress="36"
-                        android:progressTint="@color/celeste" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ProgressBar
+                            android:id="@+id/progresoMeta"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:indeterminate="false"
+                            android:max="100"
+                            android:progress="36"
+                            android:progressTint="@color/celeste" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                        </TextView>
+
+
+                    </LinearLayout>
+
+
+
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
@@ -216,7 +218,7 @@
 
         <Button
             android:id="@+id/btnComunidades"
-            android:text="Comunidades"
+            android:text="@string/btn_comunidades"
             android:layout_width="200dp"
             android:layout_height="40dp"
             android:backgroundTint="@color/azul_oscuro"
@@ -224,7 +226,7 @@
 
         <Button
             android:id="@+id/btnMetasCompletadas"
-            android:text="Metas completadas"
+            android:text="@string/btn_metasComp"
             android:layout_width="200dp"
             android:layout_height="40dp"
             android:backgroundTint="@color/azul_oscuro"
@@ -232,7 +234,7 @@
 
         <Button
             android:id="@+id/btnNuevaMeta"
-            android:text="Nueva Meta"
+            android:text="@string/btn_nuevaMeta"
             android:layout_width="200dp"
             android:layout_height="40dp"
             android:backgroundTint="@color/azul_oscuro"

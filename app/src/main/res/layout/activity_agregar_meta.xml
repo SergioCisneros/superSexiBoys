@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="26dp"
             android:layout_marginTop="5dp"
-            android:text="AGREGANDO META"
+            android:text="@string/agregar_meta"
             android:textAlignment="center"
             android:textColor="@android:color/black"
             android:textSize="25sp"
@@ -74,7 +74,8 @@
                                 android:id="@+id/tituloMeta"
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
-                                android:hint="Titulo"
+                                android:text="@string/titulo_meta"
+                                android:textColor="@color/white"
                                 android:gravity="center"
                                 android:textColorHint="#d8e4ff"
                                 />
@@ -104,7 +105,8 @@
                                 android:id="@+id/descripcionMeta"
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
-                                android:hint="Descripcion"
+                                android:text="@string/descripcion_meta"
+                                android:textColor="@color/white"
                                 android:textColorHint="#d8e4ff"
                                 />
 
@@ -117,7 +119,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
-                        android:text="Fecha de inicio:"
+                        android:text="@string/fecha_inicio1"
                         android:textColor="@android:color/white"
                         android:textStyle="bold" />
 
@@ -142,8 +144,8 @@
                                 android:id="@+id/fechaInMeta"
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
-                                android:hint="dd/mm/aaaa"
-                                android:textColorHint="#d8e4ff"
+                                android:text="@string/fecha_inicio_meta"
+                                android:textColor="@color/white"
                                 />
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
@@ -152,7 +154,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
-                        android:text="Fecha límite:"
+                        android:text="@string/fecha_limite1"
                         android:textColor="@android:color/white"
                         android:textStyle="bold" />
 
@@ -177,8 +179,8 @@
                                 android:id="@+id/fechaLiMeta"
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
-                                android:hint="dd/mm/aaaa"
-                                android:textColorHint="#d8e4ff"
+                                android:text="@string/fecha_limite_meta"
+                                android:textColor="@color/white"
                                 />
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
@@ -190,7 +192,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
-                        android:text="Etiqueta"
+                        android:text="@string/etiqueta1"
                         android:textColor="@android:color/white"
                         android:layout_gravity="center"
                         android:textStyle="bold" />
@@ -231,14 +233,14 @@
                         android:layout_gravity="center"
                         android:layout_marginTop="5dp"
                         android:backgroundTint="#2339A8"
-                        android:text="+"
+                        android:text="@string/botonplus"
                         android:textColor="@android:color/white" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
-                        android:text="Actividades"
+                        android:text="@string/actividades1"
                         android:textColor="@android:color/white"
                         android:layout_gravity="center"
                         android:textStyle="bold" />
@@ -265,8 +267,8 @@
                                 android:id="@+id/actividadNueva"
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
-                                android:hint="Actividad"
-                                android:textColorHint="#d8e4ff"
+                                android:text="@string/texto_metas_actividades"
+                                android:textColor="@color/white"
                                 />
 
                         </LinearLayout>
@@ -279,7 +281,7 @@
                         android:layout_gravity="center"
                         android:layout_marginTop="5dp"
                         android:backgroundTint="#2339A8"
-                        android:text="+"
+                        android:text="@string/botonplus"
                         android:textColor="@android:color/white" />
 
 
@@ -307,7 +309,7 @@
             android:id="@+id/btnGuardar"
             android:layout_width="200dp"
             android:layout_height="45dp"
-            android:text="Guardar"
+            android:text="@string/btnGuardarMeta"
             android:backgroundTint="#1800ad"
             android:textColor="@android:color/white"/>
     </LinearLayout>

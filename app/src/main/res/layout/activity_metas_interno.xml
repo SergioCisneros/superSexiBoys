@@ -29,13 +29,7 @@
             android:orientation="horizontal"
             >
 
-            <ImageView
-                android:id="@+id/logoMeta"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/logobalanza"
-                android:layout_gravity="left"
-                />
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -47,9 +41,7 @@
 
             <TextView
                 android:id="@+id/tituloMeta"
-                android:text=""
-                android:hint="TITULO"
-                android:textColorHint="@color/white"
+                android:text="@string/titulo_meta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
@@ -83,14 +75,12 @@
                     android:id="@+id/descripcionMeta"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=""
-                    android:hint="DESCRIPCIÓN"
+                    android:text="@string/descripcion_meta"
                     android:padding="2dp"
-                    android:textColorHint="#6B7EEC"
                     android:textStyle="bold"
                     android:textSize="20sp"
                     android:background="#1800AD"
-                    android:textColor="@color/white" />
+                    android:textColor="#6B7EEC" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -105,10 +95,8 @@
 
             <TextView
                 android:id="@+id/porcentajeBarra"
-                android:text=""
+                android:text="@string/procentaje"
                 android:layout_width="wrap_content"
-                android:hint="66%"
-                android:textColorHint="@color/white"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:textSize="50sp"
@@ -161,78 +149,14 @@
                         android:checked="false"
                         android:scaleX="1"
                         android:scaleY="1"
-                        android:hint="Actividad 1"
-                        android:textColorHint="@color/white"
                         android:gravity="left"
-                        android:text=" "
+                        android:text="@string/checkbox_meta"
                         android:textColor="@color/white"
                         android:textSize="20sp"
                         android:textStyle="bold" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="6dp"
-                android:clickable="true"
-                >
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="1dp"
-                    android:background="#11676a">
-
-                    <CheckBox
-                        android:id="@+id/miCheckBox2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:checked="false"
-                        android:scaleX="1"
-                        android:scaleY="1"
-                        android:text=" "
-                        android:textColor="@color/white"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="6dp"
-                android:clickable="true"
-                >
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="1dp"
-                    android:background="#11676a">
-
-                    <CheckBox
-                        android:id="@+id/miCheckBox3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:checked="false"
-                        android:scaleX="1"
-                        android:scaleY="1"
-                        android:text=" "
-                        android:textColor="@color/white"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        android:hint="Actividad 1"
-                        android:textColorHint="@color/white"
-                        />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
 
 
         </LinearLayout>

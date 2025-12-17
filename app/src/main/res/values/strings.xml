@@ -18,4 +18,35 @@
     <string name="texto_plus">+</string>
     <string name="texto_guardar">Guardar</string>
 
+    <string name="ver_perfil"> Ver Perfil </string>
+
+    <string name="btn_habitos"> HÁBITOS </string>
+    <string name="btn_metas"> METAS </string>
+    <string name="btn_tareas"> TAREAS </string>
+
+    <string name="titulo_meta"> TITULO </string>
+    <string name="texto_metas_actividades"> Actividad </string>
+    <string name="texto_meta_etiqueta"> Etiqueta </string>
+    <string name="descripcion_meta"> Descripcion </string>
+
+    <string name="btn_comunidades"> Comunidades </string>
+    <string name="btn_metasComp"> Metas Completadas </string>
+    <string name="btn_nuevaMeta"> Nueva Meta </string>
+
+    <string name="agregar_meta"> AGREGANDO META </string>
+    <string name="fecha_inicio1"> Fecha de inicio: </string>
+    <string name="fecha_inicio_meta"> dd/mm/aa: </string>
+    <string name="fecha_limite1"> Fecha límite:  </string>
+    <string name="fecha_limite_meta"> dd/mm/aa: </string>
+    <string name="etiqueta1"> Etiqueta </string>
+    <string name="actividades1"> Actividades </string>
+    <string name="botonplus"> + </string>
+    <string name="btnGuardarMeta"> Guardar </string>
+    <string name="procentaje"> 00% </string>
+    <string name="checkbox_meta"> Actividad </string>
+
+
+
+
+
 </resources>

@@ -13,7 +13,6 @@ data class MetaEntity(
     @ColumnInfo(name = "fecha_limite") val FechaLimite: String,
     @ColumnInfo(name = "etiquetas") val Etiqueta: String?,
     @ColumnInfo(name = "actividades") val Actividades: MutableList<String> = mutableListOf(""),
-    @ColumnInfo(name = "imagen") val Imagen: String,
     @ColumnInfo(name = "completada", defaultValue = "0") var Completada: Boolean = false,
     @ColumnInfo(name = "fecha_terminada") var FechaTerminada: Long? = null
 )
