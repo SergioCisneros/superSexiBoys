@@ -14,6 +14,7 @@ import com.example.supersexiboys.basededatos.TareaDataBase
 import com.example.supersexiboys.basededatos.TareaEntity
 import com.example.supersexiboys.databinding.ActivityCrearTareaBinding
 import com.example.supersexiboys.adapters.AdaptadorTareaActivity
+import com.google.firebase.auth.FirebaseAuth // Importante para filtrar por usuario
 
 
 class CrearTareaActivity : AppCompatActivity() {
@@ -96,7 +97,11 @@ class CrearTareaActivity : AppCompatActivity() {
                 contador?.cancel()
 
                 if(tareaId != -1){
-                    val tareasPendientes = baseDeDatos.tareaDao().getAll() //obtener las tareas
+                    // Obtenemos el ID del usuario actual
+                    val userId = FirebaseAuth.getInstance().currentUser?.uid ?: ""
+
+                    // Filtramos por usuario para evitar errores de sesión
+                    val tareasPendientes = baseDeDatos.tareaDao().getAllByUser(userId)
                     val tareaActual = tareasPendientes.find {it.id == tareaId} //buscamos la tarea que cumpla con el id
 
                     if(tareaActual != null ) {
@@ -126,9 +131,12 @@ class CrearTareaActivity : AppCompatActivity() {
     }
 
     //Leer tareas, ponerlas en el recycler view y marcar como completada
-    //Leer tareas, ponerlas en el recycler view y marcar como completada
     private fun mostrarTareas() {
-        val listaDeTareas = baseDeDatos.tareaDao().getAll()
+        // Obtenemos el ID del usuario actual para filtrar la lista
+        val userId = FirebaseAuth.getInstance().currentUser?.uid ?: ""
+
+        // Usamos la función filtrada por usuario
+        val listaDeTareas = baseDeDatos.tareaDao().getAllByUser(userId)
 
         val accionAlTerminar = { tareaSeleccionada: TareaEntity ->
 
