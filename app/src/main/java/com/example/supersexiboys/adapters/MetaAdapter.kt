@@ -9,14 +9,23 @@ import com.example.supersexiboys.databinding.ItemMetaBinding
 
 class MetaAdapter(
     private val onClick: (MetaEntity) -> Unit
-) : RecyclerView.Adapter<MetaAdapter.MetaCardViewHolder>() {
+) : RecyclerView.Adapter<MetaAdapter.MetaViewHolder>() {
 
-    private val dataCards = mutableListOf<MetaEntity>()
-    private var context: Context? = null
+    private val metas = mutableListOf<MetaEntity>()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MetaCardViewHolder {
-        context = parent.context
-        return MetaCardViewHolder(
+    inner class MetaViewHolder(private val binding: ItemMetaBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(meta: MetaEntity) {
+            binding.textoMeta.text = meta.Titulo
+            binding.root.setOnClickListener {
+                onClick(meta)
+            }
+        }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MetaViewHolder {
+        return MetaViewHolder(
             ItemMetaBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
@@ -25,30 +34,15 @@ class MetaAdapter(
         )
     }
 
-    override fun onBindViewHolder(holder: MetaCardViewHolder, position: Int) {
-        holder.bind(dataCards[position])
+    override fun onBindViewHolder(holder: MetaViewHolder, position: Int) {
+        holder.bind(metas[position])
     }
 
-    override fun getItemCount(): Int = dataCards.size
+    override fun getItemCount(): Int = metas.size
 
-    inner class MetaCardViewHolder(
-        private val binding: ItemMetaBinding
-    ) : RecyclerView.ViewHolder(binding.root) {
-
-        fun bind(meta: MetaEntity) {
-            binding.textoMeta.text = meta.Titulo
-            binding.etiqueta.text = meta.Etiqueta ?: ""
-            binding.progresoMeta.progress = 0 // luego lo conectamos
-
-            binding.root.setOnClickListener {
-                onClick(meta)
-            }
-        }
-    }
-
-    fun addDataCards(list: List<MetaEntity>) {
-        dataCards.clear()
-        dataCards.addAll(list)
+    fun addDataCards(lista: List<MetaEntity>) {
+        metas.clear()
+        metas.addAll(lista)
         notifyDataSetChanged()
     }
 }

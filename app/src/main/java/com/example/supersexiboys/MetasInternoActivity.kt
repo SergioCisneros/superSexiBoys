@@ -23,9 +23,7 @@ class MetasInternoActivity : AppCompatActivity() {
     private lateinit var metaDao: MetaDao
     private val context: Context = this
 
-    companion object {
-        const val DATABASE_NAME = "USER_DATABASE"
-    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,10 +33,11 @@ class MetasInternoActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val db = Room.databaseBuilder(
-            context,
+            applicationContext,
             MetaDataBase::class.java,
-            DATABASE_NAME
+            MetaDataBase.DATABASE_NAME
         ).build()
+
         metaDao = db.metaDao()
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->

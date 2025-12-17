@@ -6,6 +6,13 @@ import androidx.room.TypeConverters
 
 @Database(entities = [MetaEntity::class], version = 2)
 @TypeConverters(Converters::class)
+
+
 abstract class MetaDataBase : RoomDatabase() {
     abstract fun metaDao(): MetaDao
+
+    companion object {
+        const val DATABASE_NAME = "META_DATABASE"
+    }
+
 }

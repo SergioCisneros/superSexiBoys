@@ -20,11 +20,6 @@ class MetasCompletadasActivity : AppCompatActivity() {
 
     private lateinit var metaDao: MetaDao
 
-
-    companion object {
-        val DATABASE_NAME: String = "USER_DATABASE"
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -33,12 +28,14 @@ class MetasCompletadasActivity : AppCompatActivity() {
         binding = ActivityMetasCompletadasBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val ejemploDataBase = Room.databaseBuilder(
-            context, MetaDataBase::class.java,
-            com.example.supersexiboys.AgregarMetaActivity.Companion.DATABASE_NAME
+        val db = Room.databaseBuilder(
+            applicationContext,
+            MetaDataBase::class.java,
+            MetaDataBase.DATABASE_NAME
         ).build()
 
-        metaDao = ejemploDataBase.metaDao()
+
+        metaDao = db.metaDao()
 
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->

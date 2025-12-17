@@ -32,9 +32,7 @@ class MetasActivity : AppCompatActivity() {
         }
     }
 
-    companion object {
-        const val DATABASE_NAME = "META_DATABASE"
-    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,8 +44,9 @@ class MetasActivity : AppCompatActivity() {
         val db = Room.databaseBuilder(
             applicationContext,
             MetaDataBase::class.java,
-            DATABASE_NAME
+            MetaDataBase.DATABASE_NAME
         ).build()
+
 
         metaDao = db.metaDao()
 
