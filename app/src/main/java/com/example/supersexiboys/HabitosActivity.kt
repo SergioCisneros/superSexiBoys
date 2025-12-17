@@ -3,12 +3,15 @@ package com.example.supersexiboys
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.room.Room
+import basededatos.HabitoDataBase
 import com.example.supersexiboys.AgregandoHabitosActivity.Companion.ID_PASO_DESCRIPCION
 import com.example.supersexiboys.AgregandoHabitosActivity.Companion.ID_PASO_TITULO
 import com.example.supersexiboys.AgregandoHabitosActivity.Companion.ID_PASO_ETIQUETAS
@@ -16,17 +19,37 @@ import com.example.supersexiboys.AgregandoHabitosActivity.Companion.ID_PASO_FREC
 import com.example.supersexiboys.AgregandoHabitosActivity.Companion.ID_PASO_REPETICIONES
 import com.example.supersexiboys.adapters.EtiquetaAdapter
 import com.example.supersexiboys.adapters.HabitoAdapter
+import com.example.supersexiboys.basededatos.HabitoDao
+import com.example.supersexiboys.basededatos.HabitoEntity
 import com.example.supersexiboys.databinding.ActivityHabitosBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 
 class HabitosActivity : AppCompatActivity() {
     val context: Context = this
     private lateinit var binding: ActivityHabitosBinding
     val adapterHabito: HabitoAdapter by lazy { HabitoAdapter() }
+
+    private lateinit var habitoDao: HabitoDao
+
+    companion object{
+        val DATABASE_NAME: String = "HABITO_DATABASE"
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         binding = ActivityHabitosBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val habitoDataBase = Room.databaseBuilder(
+            context, HabitoDataBase::class.java,DATABASE_NAME
+        ).build()
+
+        habitoDao = habitoDataBase.habitoDao()
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -37,11 +60,12 @@ class HabitosActivity : AppCompatActivity() {
             val cambioAAgregarHabito: Intent = Intent(context, AgregandoHabitosActivity::class.java)
             startActivity(cambioAAgregarHabito)
         }
-
+        val listaHabitos = obtenerDatosEnBaseDeDatos()
         binding.recyclerHabitos.layoutManager =
             LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+        adapterHabito.addDataCards(listaHabitos)
+        binding.recyclerHabitos.adapter = adapterHabito
 
-        val listaHabitos = mutableListOf<Habito>()
         val tituloRecibido: String? = intent.getStringExtra(ID_PASO_TITULO)
         val descripcionRecibida: String? = intent.getStringExtra(ID_PASO_DESCRIPCION)
         val frecuenciaRecibida: String? = intent.getStringExtra(ID_PASO_FRECUENCIA)
@@ -50,9 +74,19 @@ class HabitosActivity : AppCompatActivity() {
 
         if(!tituloRecibido.isNullOrEmpty() && !frecuenciaRecibida.isNullOrEmpty() &&
             !repeticionesRecibido.isNullOrEmpty() && !etiquetasRebida.isNullOrEmpty()){
-            listaHabitos.add(Habito(tituloRecibido,descripcionRecibida,frecuenciaRecibida,repeticionesRecibido,etiquetasRebida))
-            adapterHabito.addDataCards(listaHabitos)
-            binding.recyclerHabitos.adapter = adapterHabito
+            GlobalScope.launch {
+                val habito = HabitoEntity(
+                    id = 0,
+                    titulo = tituloRecibido,
+                    descripcion = descripcionRecibida.toString(),
+                    frecuencia = frecuenciaRecibida,
+                    repeticiones = repeticionesRecibido,
+                    etiquetas = fromList(etiquetasRebida)
+                )
+                habitoDao.insertAll(habito)
+            }
+            val cambioAHabitosActiviy: Intent = Intent(context, HabitosActivity::class.java)
+            startActivity(cambioAHabitosActiviy)
         }
 
         binding.verPerfilButton.setOnClickListener {
@@ -68,4 +102,19 @@ class HabitosActivity : AppCompatActivity() {
             startActivity(cambioActivityCrearTareaActivity)
         }
     }
+
+    private fun obtenerDatosEnBaseDeDatos():List<HabitoEntity>  {
+        var ejemplo: List<HabitoEntity> = listOf()
+        runBlocking {
+            withContext(Dispatchers.IO){
+                ejemplo = habitoDao.getAll()
+            }
+        }
+        return ejemplo
+    }
+    fun fromList(value: List<String>): String {
+        return value.joinToString(",") // convierte la lista a un string separado por comas
+    }
+
+
 }

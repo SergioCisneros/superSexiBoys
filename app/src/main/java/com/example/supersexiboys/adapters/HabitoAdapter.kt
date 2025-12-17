@@ -6,10 +6,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.supersexiboys.Habito
+import com.example.supersexiboys.basededatos.HabitoEntity
 import com.example.supersexiboys.databinding.AdapterHabitoBinding
 
 class HabitoAdapter: RecyclerView.Adapter<HabitoAdapter.HabitoCardViewHolder>() {
-    private val dataCards = mutableListOf<Habito>()
+    private val dataCards = mutableListOf<HabitoEntity>()
     private var context: Context? = null
     val adapterEtiqueta: EtiquetaAdapter by lazy { EtiquetaAdapter() }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HabitoCardViewHolder {
@@ -31,19 +32,23 @@ class HabitoAdapter: RecyclerView.Adapter<HabitoAdapter.HabitoCardViewHolder>() 
 
     inner class HabitoCardViewHolder(private val binding: AdapterHabitoBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun binding(data: Habito) {
+        fun binding(data: HabitoEntity) {
             binding.textTitulo.text = data.titulo
             binding.textDescripcion.text = data.descripcion
             binding.textContador.text = "0/"+data.repeticiones
             binding.recyclerEtiquetas.layoutManager =
                 LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
-            adapterEtiqueta.addDataCards(data.etiquetas)
+            adapterEtiqueta.addDataCards(toList(data.etiquetas))
             binding.recyclerEtiquetas.adapter = adapterEtiqueta
         }
     }
 
-    fun addDataCards(list: List<Habito>) {
+    fun addDataCards(list: List<HabitoEntity>) {
         dataCards.clear()
         dataCards.addAll(list)
     }
+    fun toList(value: String): List<String> {
+        return value.split(",") // convierte el string de vuelta a lista
+    }
+
 }
