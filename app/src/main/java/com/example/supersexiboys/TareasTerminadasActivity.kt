@@ -49,7 +49,7 @@ class TareasTerminadasActivity : AppCompatActivity() {
     private fun mostrarTareasTerminadas() {
         val tareasTerminadas: List<TareaEntity> = baseDatos.tareaDao().getCompleted()
 
-        val adapter = AdaptadorTareaActivity { }
+        val adapter = AdaptadorTareaActivity {}
         adapter.addDataCards(tareasTerminadas)
         binding.recyclerViewTerminadas.layoutManager = LinearLayoutManager(context)
         binding.recyclerViewTerminadas.adapter = adapter

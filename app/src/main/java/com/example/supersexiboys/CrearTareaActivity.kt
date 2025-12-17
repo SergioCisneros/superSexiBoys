@@ -126,6 +126,7 @@ class CrearTareaActivity : AppCompatActivity() {
     }
 
     //Leer tareas, ponerlas en el recycler view y marcar como completada
+    //Leer tareas, ponerlas en el recycler view y marcar como completada
     private fun mostrarTareas() {
         val listaDeTareas = baseDeDatos.tareaDao().getAll()
 
@@ -136,7 +137,14 @@ class CrearTareaActivity : AppCompatActivity() {
 
             baseDeDatos.tareaDao().update(tareaSeleccionada) //Actualizamos la baseDeDatos
             Toast.makeText(context, "¡Tarea completada!", Toast.LENGTH_SHORT).show()
-            //Llamos de nuevo para limpiar la lista
+
+            if (tareaSeleccionada.id == tareaId) {
+                binding.tituloDeTarea.text = "Tarea actual terminada"
+                binding.tiempoDeTarea.text = "Completado" // Opcional: Cambiar el texto del tiempo
+
+                contador?.cancel()
+            }
+
             mostrarTareas()
         }
 
@@ -145,7 +153,6 @@ class CrearTareaActivity : AppCompatActivity() {
         val adapter = AdaptadorTareaActivity(accionAlTerminar)
         adapter.addDataCards(listaDeTareas)
         binding.recyclerViewTareas.adapter = adapter
-
     }
 
     //Al cerrar la activity detener contador y evitar errores

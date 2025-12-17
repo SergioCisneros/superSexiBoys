@@ -5,10 +5,25 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="20dp"
     tools:context=".LogueadoActivity">
+
     <Button
         android:id="@+id/desloguearse"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/cerrar_sesion"/>
+        android:text="@string/cerrar_sesion"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnIrACrearTarea"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="IR A CREAR TAREA"
+        android:backgroundTint="@color/azul_oscuro"
+        app:layout_constraintTop_toBottomOf="@id/desloguearse"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
