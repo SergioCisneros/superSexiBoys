@@ -8,21 +8,21 @@ import androidx.room.Update
 
 @Dao
 interface MetaDao {
-    @Query("SELECT * FROM TareaEntity WHERE completada = 0")
-    fun getAll(): List<TareaEntity>
+    @Query()
+    fun getAll(): List<MetaEntity>
 
-    @Query("SELECT * FROM TareaEntity WHERE completada = 1 ORDER BY fecha_terminada DESC")
-    fun getCompleted(): List<TareaEntity>
+    @Query()
+    fun getCompleted(): List<MetaEntity>
 
     @Insert
-    fun insertAll(vararg tarea: TareaEntity)
+    fun insertAll(vararg meta: MetaEntity)
 
     @Update
-    fun update(tarea: TareaEntity)
+    fun update(meta: MetaEntity)
 
-    @Query("DELETE FROM TareaEntity")
+    @Query()
     fun deleteAll()
 
     @Delete
-    fun delete(tarea: TareaEntity)
+    fun delete(meta: MetaEntity)
 }
