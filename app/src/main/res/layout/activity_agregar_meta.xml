@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -74,7 +75,7 @@
                                 android:id="@+id/tituloMeta"
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
-                                android:text="@string/titulo_meta"
+                                android:hint="@string/titulo_meta"
                                 android:textColor="@color/white"
                                 android:gravity="center"
                                 android:textColorHint="#d8e4ff"
@@ -105,7 +106,7 @@
                                 android:id="@+id/descripcionMeta"
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
-                                android:text="@string/descripcion_meta"
+                                android:hint="@string/descripcion_meta"
                                 android:textColor="@color/white"
                                 android:textColorHint="#d8e4ff"
                                 />
@@ -144,8 +145,9 @@
                                 android:id="@+id/fechaInMeta"
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
-                                android:text="@string/fecha_inicio_meta"
+                                android:hint="@string/fecha_inicio_meta"
                                 android:textColor="@color/white"
+                                android:textColorHint="#d8e4ff"
                                 />
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
@@ -179,8 +181,9 @@
                                 android:id="@+id/fechaLiMeta"
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
-                                android:text="@string/fecha_limite_meta"
+                                android:hint="@string/fecha_limite_meta"
                                 android:textColor="@color/white"
+                                android:textColorHint="#d8e4ff"
                                 />
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
@@ -212,7 +215,7 @@
                             android:layout_height="45dp"
                             android:orientation="vertical"
                             android:padding="8dp"
-                            android:visibility="gone"
+
                             >
 
                             <EditText
@@ -221,6 +224,7 @@
                                 android:layout_height="40dp"
                                 android:hint="Etiqueta"
                                 android:textColorHint="#d8e4ff"
+                                android:textColor="@color/white"
                                 />
 
                         </LinearLayout>
@@ -267,8 +271,9 @@
                                 android:id="@+id/actividadNueva"
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
-                                android:text="@string/texto_metas_actividades"
+                                android:hint="@string/texto_metas_actividades"
                                 android:textColor="@color/white"
+                                android:textColorHint="#d8e4ff"
                                 />
 
                         </LinearLayout>
@@ -283,7 +288,6 @@
                         android:backgroundTint="#2339A8"
                         android:text="@string/botonplus"
                         android:textColor="@android:color/white" />
-
 
                 </LinearLayout>
 

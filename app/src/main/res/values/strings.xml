@@ -30,7 +30,7 @@
     <string name="btn_metas"> METAS </string>
     <string name="btn_tareas"> TAREAS </string>
 
-    <string name="titulo_meta"> TITULO </string>
+    <string name="titulo_meta"> TÍTULO </string>
     <string name="texto_metas_actividades"> Actividad </string>
     <string name="texto_meta_etiqueta"> Etiqueta </string>
     <string name="descripcion_meta"> Descripcion </string>
@@ -50,9 +50,5 @@
     <string name="btnGuardarMeta"> Guardar </string>
     <string name="procentaje"> 00% </string>
     <string name="checkbox_meta"> Actividad </string>
-
-
-
-
 
 </resources>

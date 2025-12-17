@@ -2,6 +2,7 @@ package com.example.supersexiboys
 
 import android.content.Context
 import android.os.Bundle
+import android.widget.EditText
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -12,6 +13,7 @@ import androidx.room.Room
 import com.example.supersexiboys.basededatos.MetaDao
 import com.example.supersexiboys.basededatos.MetaDataBase
 import com.example.supersexiboys.basededatos.MetaEntity
+import com.example.supersexiboys.databinding.ActivityAgregarMetaBinding
 
 
 import kotlinx.coroutines.Dispatchers
@@ -21,19 +23,19 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 
 
+private val listaActividades = mutableListOf<String>()
+private var etiquetaSeleccionada: String? = null
+
+
 class AgregarMetaActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMetasBinding
+    private lateinit var binding: ActivityAgregarMetaBinding
     val context: Context = this
-
 
     private lateinit var metaDao: MetaDao
 
 
-    companion object{
-        val NOMBRE_FICHERO_SHARED_PREFERENCES = "Progra3II"
-        val NOMBRE_DATO_EJEMPLO = "DatoEjemplo"
-        val NOMBRE_ESTUADIANTE_GUARDADO = "EstudianteAlmacenado"
+    companion object {
         val DATABASE_NAME: String = "USER_DATABASE"
     }
 
@@ -41,7 +43,7 @@ class AgregarMetaActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        binding = ActivityMetasBinding.inflate(layoutInflater)
+        binding = ActivityAgregarMetaBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val ejemploDataBase = Room.databaseBuilder(
@@ -57,9 +59,56 @@ class AgregarMetaActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+
+        binding.btnAgregarActividad.setOnClickListener {
+            val texto = binding.actividadNueva.text.toString()
+            if (texto.isNotBlank()) {
+                listaActividades.add(texto)
+
+                val nuevoEditText = EditText(this)
+                nuevoEditText.setText(texto)
+                nuevoEditText.isEnabled = false
+                nuevoEditText.setTextColor(getColor(android.R.color.white))
+
+                binding.main.addView(nuevoEditText)
+                binding.actividadNueva.text.clear()
+            }
+
+
+
+        }
+
+        binding.btnAgregarEtiqueta.setOnClickListener {
+            etiquetaSeleccionada = binding.etiquetaNueva.text.toString()
+        }
+
+
+        binding.btnGuardar.setOnClickListener {
+            val meta = MetaEntity(
+                Titulo = binding.tituloMeta.text.toString(),
+                Descripcion = binding.descripcionMeta.text.toString(),
+                FechaInicio = binding.fechaInMeta.text.toString(),
+                FechaLimite = binding.fechaLiMeta.text.toString(),
+                Etiqueta = etiquetaSeleccionada,
+                Actividades = listaActividades
+            )
+
+            GlobalScope.launch(Dispatchers.IO) {
+                metaDao.insertAll(meta) // <- funciona con tu DAO actual
+                finish()
+            }
+
+        }
     }
 
 
+}
+
+
+
+    // codigos de referencia
+/*
     private fun guardarDatosEnBaseDeDatos() {
         GlobalScope.launch {
             val meta = MetaEntity(
@@ -81,4 +130,4 @@ class AgregarMetaActivity : AppCompatActivity() {
         }
         return ejemplo
     }
-}
+}*/
