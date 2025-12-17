@@ -39,9 +39,7 @@
         <activity
             android:name=".LogueadoActivity"
             android:exported="false" />
-        <activity
-            android:name=".AdaptadorActivity"
-            android:exported="false" />
+
 
         <activity
             android:name=".TareaActivity"
