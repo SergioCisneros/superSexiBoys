@@ -193,7 +193,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
     <Button
-        android:id="@+id/button_guardar_etiqueta"
+        android:id="@+id/button_guardar_tarea"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"

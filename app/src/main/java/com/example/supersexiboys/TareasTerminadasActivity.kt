@@ -3,8 +3,6 @@ package com.example.supersexiboys
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.Room
 import com.example.supersexiboys.basededatos.TareaDataBase
@@ -19,25 +17,24 @@ class TareasTerminadasActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
         binding = ActivityTareasTerminadasBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         baseDatos = Room.databaseBuilder(
             applicationContext,
             TareaDataBase::class.java,
-            "tareas-db"
-        ).fallbackToDestructiveMigration() // Agregado para corregir errores de esquema
-            .allowMainThreadQueries().build()
+            "tareas-baseDeDatos" // Asegúrate que este nombre sea IGUAL en todas tus activities
+        ).allowMainThreadQueries().build()
 
-        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+        binding.btnVolver.setOnClickListener {
+            finish() // Esto cierra la pantalla y te regresa a la anterior
         }
 
         mostrarTareasTerminadas()
     }
 
+    // Si vuelves a entrar, que se actualice
     override fun onResume() {
         super.onResume()
         mostrarTareasTerminadas()
@@ -48,6 +45,7 @@ class TareasTerminadasActivity : AppCompatActivity() {
 
         binding.recyclerViewTerminadas.layoutManager = LinearLayoutManager(this)
 
-        binding.recyclerViewTerminadas.adapter = TareaAdapter(tareasTerminadas) {}
+        // Usamos las llaves vacías { } porque aquí no queremos editar nada
+        binding.recyclerViewTerminadas.adapter = AdaptadorTareaActivity(tareasTerminadas) { }
     }
 }

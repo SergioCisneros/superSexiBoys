@@ -1,18 +1,17 @@
 package com.example.supersexiboys
 
-import android.content.Context
-import android.content.Intent
-import android.os.Bundle
-import android.widget.Toast
+import android.content.Context // Necesario para los intents
+import android.content.Intent // Comunicacion
+import android.os.Bundle // Guardar datos
+import android.widget.Toast // Mensajes de notificacion
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.room.Room
-import com.example.supersexiboys.basededatos.TareaDataBase
-import com.example.supersexiboys.basededatos.TareaEntity
-import com.example.supersexiboys.databinding.ActivityTareaBinding
+import androidx.room.Room // Room para SQLiTE
+import com.example.supersexiboys.basededatos.TareaDataBase // DB
+import com.example.supersexiboys.basededatos.TareaEntity // Tabla
+import com.example.supersexiboys.databinding.ActivityTareaBinding // binding
 
 class TareaActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityTareaBinding
     private val context: Context = this
 
@@ -23,57 +22,62 @@ class TareaActivity : AppCompatActivity() {
         binding = ActivityTareaBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.buttonGuardarEtiqueta.setOnClickListener {
+        binding.buttonGuardarTarea.setOnClickListener {
 
-            val titulo = binding.editTitulo.text.toString().trim()
-            val descripcion = binding.editDescripcion.text.toString().trim()
-            val tiempo = binding.editTiempoLimite.text.toString().trim()
-            val etiquetas = "Mis etiquetas"
+            val textTitulo: String = binding.editTitulo.text.toString().trim()
+            val textDescripcion: String = binding.editDescripcion.text.toString().trim()
+            val textTiempoLimit = binding.editTiempoLimite.text.toString().trim()
+            val textEtiquetas: String = "Mis etiquetas"
 
-            if (titulo.isEmpty() || descripcion.isEmpty() || tiempo.isEmpty()) {
-                Toast.makeText(context, "Completa todos los campos", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
+            //Si faltan datos
+            if (textTitulo.isEmpty() || textDescripcion.isEmpty() || textTiempoLimit.isEmpty()) {
+                Toast.makeText(context, "Debes poner todos los datos", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener //Se detiene la ejecucion si faltan datos
             }
 
-            // Validación HH:MM
-            val partes = tiempo.split(":")
+            // validar (horas y minutos)
+            val partes = textTiempoLimit.split(":") // 10:30 -> (10, 30)
             if (partes.size != 2 || partes[0].toIntOrNull() == null || partes[1].toIntOrNull() !in 0..59) {
-                Toast.makeText(context, "Formato incorrecto (HH:MM)", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
+                Toast.makeText(context, "Formato incorrecto (Horas:Minutos)", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener // Mensaje de error al poner mal el tiempo
             }
 
-            val db = Room.databaseBuilder(
-                applicationContext,
-                TareaDataBase::class.java,
-                "tareas-db"
-            ).allowMainThreadQueries().build()
+            //Creacion de la base de datos
+            val baseDeDatos = Room.databaseBuilder(
+                applicationContext, //context global de la DB
+                TareaDataBase::class.java, //Clase de la DB Define DAO y TABLAS
+                "tareas-baseDeDatos"
+            ).allowMainThreadQueries().build() //consultas y construcion
 
-            val nuevaTarea = TareaEntity(
-                titulo = titulo,
-                descripcion = descripcion,
-                tiempoLimite = tiempo,
-                etiquetas = etiquetas
+            // Objeto Tarea
+            var nuevaTarea = TareaEntity(
+                Titulo = textTitulo,
+                Descripcion = textDescripcion,
+                TiempoLimite = textTiempoLimit,
+                Etiquetas = textEtiquetas
             )
+            baseDeDatos.tareaDao().insertAll(nuevaTarea) //Se pasan los datos al Dao para guardarlos
+            val tareasPendientes = baseDeDatos.tareaDao().getAll() //Lista de tareas
 
-            db.tareaDao().insertAll(nuevaTarea)
-            //BUSCAR LA TAREA POR EL ID
-            val tareasPendientes = db.tareaDao().getAll()
-            val tareaInsertada = tareasPendientes.lastOrNull {
-                it.titulo == titulo &&
-                        it.descripcion == descripcion &&
-                        it.tiempoLimite == tiempo
+            //Encontrar tareas
+            var tareaCreada: TareaEntity? = null
+
+            for(tarea in tareasPendientes){
+                if(tarea.Titulo == textTitulo && tarea.Descripcion == textDescripcion && tarea.TiempoLimite == textTiempoLimit){
+                    tareaCreada = tarea
+                }
             }
 
+            //Intent para CrearTareaActivity
             val intent = Intent(this, CrearTareaActivity ::class.java)
-            intent.putExtra("titulo", titulo)
-            intent.putExtra("descripcion", descripcion)
-            intent.putExtra("tiempo", tiempo)
-            intent.putExtra("etiquetas", etiquetas)
+            intent.putExtra("titulo", textTitulo) //clave, valor
+            intent.putExtra("descripcion", textDescripcion)
+            intent.putExtra("tiempo", textTiempoLimit)
+            intent.putExtra("etiquetas", textEtiquetas)
 
-            if (tareaInsertada != null) {
-                intent.putExtra("tareaId", tareaInsertada.id)
+            if (tareaCreada != null) {
+                intent.putExtra("tareaId", tareaCreada.id)
             }
-
             startActivity(intent)
         }
     }
