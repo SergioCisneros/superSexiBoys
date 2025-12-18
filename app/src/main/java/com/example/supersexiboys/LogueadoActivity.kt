@@ -5,8 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
@@ -27,7 +25,6 @@ class LogueadoActivity : AppCompatActivity() {
         // LOGICA PARA MOSTRAR IMAGEN
         val usuarioActual = auth.currentUser
 
-        // Recuperamos la "PhotoUrl" que en realidad es el nombre de nuestra imagen (ej: "avatar_uno")
         val nombreAvatar = usuarioActual?.photoUrl.toString()
 
         when (nombreAvatar) {

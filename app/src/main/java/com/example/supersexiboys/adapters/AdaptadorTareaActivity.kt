@@ -48,7 +48,7 @@ class AdaptadorTareaActivity(private val onCheckClick: (TareaEntity) -> Unit) : 
             }
 
             binding.checkTerminar.setOnClickListener {
-                if (binding.checkTerminar.isChecked) onCheckClick(tarea)
+                if (binding.checkTerminar.isChecked) onCheckClick(tarea) //Envia info
             }
         }
 
