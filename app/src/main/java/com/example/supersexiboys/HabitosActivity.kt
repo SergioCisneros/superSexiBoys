@@ -103,6 +103,7 @@ class HabitosActivity : AppCompatActivity() {
 
         if(!tituloRecibido.isNullOrEmpty() && !frecuenciaRecibida.isNullOrEmpty() &&
             !repeticionesRecibido.isNullOrEmpty() && !etiquetasRebida.isNullOrEmpty()){
+            Log.v("se añade item","todobien")
             GlobalScope.launch {
                 val habito = HabitoEntity(
                     id = 0,
@@ -132,6 +133,10 @@ class HabitosActivity : AppCompatActivity() {
         binding.tareasButton.setOnClickListener {
             val cambioActivityCrearTareaActivity: Intent = Intent(context, CrearTareaActivity::class.java)
             startActivity(cambioActivityCrearTareaActivity)
+        }
+        binding.comunidadesButton.setOnClickListener {
+            val cambioActiviyComunidades: Intent = Intent(context, ComunidadesActivity::class.java)
+            startActivity(cambioActiviyComunidades)
         }
     }
 
