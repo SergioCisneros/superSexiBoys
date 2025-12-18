@@ -7,7 +7,6 @@ import android.os.CountDownTimer //Temporizador hacia atras
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager //Para el RECYCLERVIEW
 import androidx.room.Room
 import com.example.supersexiboys.basededatos.TareaDataBase
@@ -26,7 +25,6 @@ class CrearTareaActivity : AppCompatActivity() {
     private var tituloTarea: String? = null
     private var descripcionTarea: String? = null
     private var tiempoTarea: String? = null
-    private var etiquetasTarea: String? = null
     private var tareaId: Int = -1 // Para identificar tareas nuevas y existentes
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,12 +43,10 @@ class CrearTareaActivity : AppCompatActivity() {
         tituloTarea = intent.getStringExtra("titulo")
         descripcionTarea = intent.getStringExtra("descripcion")
         tiempoTarea = intent.getStringExtra("tiempo")
-        etiquetasTarea = intent.getStringExtra("etiquetas")
         tareaId = intent.getIntExtra("tareaId", -1)
 
         binding.tituloDeTarea.text = tituloTarea ?: "" //Usamos la elvish function
         binding.descripcionDeTarea.text = descripcionTarea ?: ""
-        binding.etiquetaDeTarea.text = etiquetasTarea ?: ""
 
         //Iniciar Temporizador
         if (tiempoTarea != null && tareaId != -1) {
@@ -63,24 +59,50 @@ class CrearTareaActivity : AppCompatActivity() {
             }
         }
 
-        binding.buttonCrearOtraTarea.setOnClickListener {
-            val intent = Intent(this, TareaActivity::class.java)
+        //Mostrar Imagen de Perfil
+        val user = FirebaseAuth.getInstance().currentUser
+        val nombreAvatar = user?.photoUrl.toString() // Obtenemos el nombre guardado en Firebase
+
+        when (nombreAvatar) { //Como un Case
+            "avatar_uno" -> binding.imagenPerfil.setImageResource(R.drawable.avatar_uno)
+            "avatar_dos" -> binding.imagenPerfil.setImageResource(R.drawable.avatar_dos)
+            "avatar_tres" -> binding.imagenPerfil.setImageResource(R.drawable.avatar_tres)
+            else -> binding.imagenPerfil.setImageResource(R.drawable.perfilvacio)
+        }
+
+        //Botones
+        binding.metasButton.setOnClickListener {
+            val intent = Intent(context, MetasActivity::class.java)
             startActivity(intent)
-            finish() //Debemos cerrar CrearTareaActivity
+        }
+        binding.habitosButton.setOnClickListener {
+            val intent = Intent(context, HabitosActivity::class.java)
+            startActivity(intent)
+        }
+        binding.btnVerPerfil.setOnClickListener {
+            val intent = Intent(context, LogueadoActivity::class.java)
+            startActivity(intent)
+        }
+        binding.buttonCrearOtraTarea.setOnClickListener {
+            val intent = Intent(context, TareaActivity::class.java)
+            startActivity(intent)
+            finish() //Para evitar errores
         }
 
         binding.buttonBorrarTareas.setOnClickListener {
-            val intent = Intent(this, TareasTerminadasActivity::class.java)
+            val intent = Intent(context, TareasTerminadasActivity::class.java)
             startActivity(intent)
         }
         mostrarTareas() // Mostrar lista de tareas en forma de lista
     }
 
+
+    //Cronometro
     private fun iniciarCronometro(milisegundos: Long) {
         contador?.cancel() //si hay un contador activo lo matamos
 
         // crear un temporizador
-        contador = object : CountDownTimer(milisegundos, 1000) {
+        contador = object : CountDownTimer(milisegundos, 1000) { //1sg
 
             //cada segundo
             override fun onTick(millisRestantes: Long) {
@@ -97,25 +119,20 @@ class CrearTareaActivity : AppCompatActivity() {
                 contador?.cancel()
 
                 if(tareaId != -1){
-                    // Obtenemos el ID del usuario actual
                     val userId = FirebaseAuth.getInstance().currentUser?.uid ?: ""
 
-                    // Filtramos por usuario para evitar errores de sesión
+                    // Filtramos tareas POR USUARIOS
                     val tareasPendientes = baseDeDatos.tareaDao().getAllByUser(userId)
-                    val tareaActual = tareasPendientes.find {it.id == tareaId} //buscamos la tarea que cumpla con el id
+                    val tareaActual = tareasPendientes.find {it.id == tareaId} //Buscamos por ID
 
                     if(tareaActual != null ) {
-                        //marcar la tarea como completada
-                        tareaActual.Completada = true
+                        tareaActual.Completada = true //Se completa
                         tareaActual.FechaTerminada = System.currentTimeMillis()
 
                         //Cambios de la baseDeDatos
                         baseDeDatos.tareaDao().update(tareaActual)
 
-                        Toast.makeText(context, "La tarea '${tareaActual.Titulo}' ha terminado su tiempo",
-                            Toast.LENGTH_SHORT
-                        ).show()
-
+                        Toast.makeText(context, "La tarea '${tareaActual.Titulo}' ha terminado su tiempo", Toast.LENGTH_SHORT).show()
                         mostrarTareas()
                     }
                 }
@@ -132,10 +149,7 @@ class CrearTareaActivity : AppCompatActivity() {
 
     //Leer tareas, ponerlas en el recycler view y marcar como completada
     private fun mostrarTareas() {
-        // Obtenemos el ID del usuario actual para filtrar la lista
         val userId = FirebaseAuth.getInstance().currentUser?.uid ?: ""
-
-        // Usamos la función filtrada por usuario
         val listaDeTareas = baseDeDatos.tareaDao().getAllByUser(userId)
 
         val accionAlTerminar = { tareaSeleccionada: TareaEntity ->
@@ -146,21 +160,20 @@ class CrearTareaActivity : AppCompatActivity() {
             baseDeDatos.tareaDao().update(tareaSeleccionada) //Actualizamos la baseDeDatos
             Toast.makeText(context, "¡Tarea completada!", Toast.LENGTH_SHORT).show()
 
+            //Si era la actual
             if (tareaSeleccionada.id == tareaId) {
                 binding.tituloDeTarea.text = "Tarea actual terminada"
-                binding.tiempoDeTarea.text = "Completado" // Opcional: Cambiar el texto del tiempo
-
+                binding.tiempoDeTarea.text = "Completado"
                 contador?.cancel()
             }
-
-            mostrarTareas()
+            mostrarTareas()//Actupantalla
         }
 
         //Configurar el adapter
         binding.recyclerViewTareas.layoutManager = LinearLayoutManager(context)
         val adapter = AdaptadorTareaActivity(accionAlTerminar)
         adapter.addDataCards(listaDeTareas)
-        binding.recyclerViewTareas.adapter = adapter
+        binding.recyclerViewTareas.adapter = adapter //Conexion adapter recycler view
     }
 
     //Al cerrar la activity detener contador y evitar errores

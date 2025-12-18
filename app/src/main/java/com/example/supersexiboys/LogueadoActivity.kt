@@ -5,8 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
@@ -24,6 +22,18 @@ class LogueadoActivity : AppCompatActivity() {
         setContentView(binding.root)
         auth = Firebase.auth
 
+        // LOGICA PARA MOSTRAR IMAGEN
+        val usuarioActual = auth.currentUser
+
+        val nombreAvatar = usuarioActual?.photoUrl.toString()
+
+        when (nombreAvatar) {
+            "avatar_uno" -> binding.imgPerfilUsuario.setImageResource(R.drawable.avatar_uno)
+            "avatar_dos" -> binding.imgPerfilUsuario.setImageResource(R.drawable.avatar_dos)
+            "avatar_tres" -> binding.imgPerfilUsuario.setImageResource(R.drawable.avatar_tres)
+            else -> binding.imgPerfilUsuario.setImageResource(R.drawable.perfilvacio)
+        }
+
 
         // Botón para cerrar sesión
         binding.desloguearse.setOnClickListener {
@@ -33,8 +43,8 @@ class LogueadoActivity : AppCompatActivity() {
         }
 
         // Botón para ir a crear tarea
-        binding.btnIrACrearTarea.setOnClickListener {
-            val intent = Intent(context, CrearTareaActivity::class.java)
+        binding.btnIrAPantallaInicio.setOnClickListener {
+            val intent = Intent(context, HabitosActivity::class.java)
             startActivity(intent)
         }
     }

@@ -11,32 +11,33 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SuperSexiBoys">
-
+        <activity
+            android:name=".SeleccionAvatarActivity"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
-        </activity>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".RegistroActivity"
             android:exported="false" />
-
         <activity
             android:name=".LogueadoActivity"
             android:exported="false" />
-
         <activity
             android:name=".TareaActivity"
             android:exported="false" />
-
         <activity
             android:name=".CrearTareaActivity"
             android:exported="false" />
-
         <activity
             android:name=".TareasTerminadasActivity"
             android:exported="false" />
-
         <activity
             android:name=".MetasActivity"
             android:exported="true" />
@@ -44,7 +45,6 @@
         <activity
             android:name=".MetasInternoActivity"
             android:exported="false" />
-
         <activity
             android:name=".AgregarMetaActivity"
             android:exported="true"
@@ -58,15 +58,12 @@
         <activity
             android:name=".MetasCompletadasActivity"
             android:exported="false" />
-
         <activity
             android:name=".HabitosActivity"
             android:exported="false" />
-
         <activity
             android:name=".AgregandoHabitosActivity"
             android:exported="false" />
-
     </application>
 
 </manifest>

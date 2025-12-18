@@ -19,6 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp">
         <Button
+            android:id="@+id/btnVerPerfil"
             android:layout_weight="8"
             android:layout_width="0dp"
             android:text="Ver perfil"
@@ -33,6 +34,7 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/habitos_button"
         app:layout_constraintTop_toBottomOf="@+id/identifica_usuarioTarea"
         app:layout_constraintEnd_toStartOf="@+id/metas_button"
         android:layout_width="wrap_content"
@@ -117,16 +119,6 @@
                 android:textSize="16sp"
                 android:gravity="center_horizontal"/>
 
-            <TextView
-                android:id="@+id/etiquetaDeTarea"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="Etiquetas"
-                android:textColor="@color/verde_claro_sergio"
-                android:textSize="14sp"
-                android:textStyle="italic"
-                android:gravity="center_horizontal"/>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"

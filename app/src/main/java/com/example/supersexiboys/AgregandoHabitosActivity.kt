@@ -51,7 +51,8 @@ class AgregandoHabitosActivity : AppCompatActivity() {
                 binding.nombreDeEtiqueta.setText("")
                 adapterEtiqueta.addDataCards(listaEtiquetas)
                 binding.recyclerEtiquetas.adapter = adapterEtiqueta
-            }        }
+            }
+        }
 
         binding.buttonDiario.setOnClickListener {
             binding.buttonDiario.backgroundTintList = ContextCompat.getColorStateList(this, R.color.azul_oscuro)

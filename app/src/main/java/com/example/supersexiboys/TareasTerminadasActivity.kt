@@ -10,7 +10,7 @@ import com.example.supersexiboys.basededatos.TareaDataBase
 import com.example.supersexiboys.basededatos.TareaEntity
 import com.example.supersexiboys.databinding.ActivityTareasTerminadasBinding
 import com.example.supersexiboys.adapters.AdaptadorTareaActivity
-
+import com.google.firebase.auth.FirebaseAuth
 
 class TareasTerminadasActivity : AppCompatActivity() {
 
@@ -36,22 +36,29 @@ class TareasTerminadasActivity : AppCompatActivity() {
         binding.btnVolver.setOnClickListener {
             finish() //Cierra la actual activity y volvemos a la anterior
         }
-
         mostrarTareasTerminadas()
     }
 
-    // Si vuelves a entrar, que se actualice
+    // Actu al entrar de nuevo
     override fun onResume() {
         super.onResume()
         mostrarTareasTerminadas()
     }
 
     private fun mostrarTareasTerminadas() {
-        val tareasTerminadas: List<TareaEntity> = baseDatos.tareaDao().getCompleted()
+        // Obtener el ID del usuario actual de Firebase
+        val user = FirebaseAuth.getInstance().currentUser
+        val userId = user?.uid ?: ""
 
+        // Filtrar DAO por terminadas por el userID
+        val tareasTerminadas: List<TareaEntity> = baseDatos.tareaDao().getCompletedByUser(userId)
+
+        //Configurar el adaptador con la lista filtrada
         val adapter = AdaptadorTareaActivity {}
         adapter.addDataCards(tareasTerminadas)
         binding.recyclerViewTerminadas.layoutManager = LinearLayoutManager(context)
         binding.recyclerViewTerminadas.adapter = adapter
     }
+
+
 }

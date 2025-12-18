@@ -62,6 +62,20 @@ class MetasActivity : AppCompatActivity() {
         binding.btnMetasCompletadas.setOnClickListener {
             startActivity(Intent(this, MetasCompletadasActivity::class.java))
         }
+
+        binding.btnHabitos.setOnClickListener {
+            val cambioAHabitos: Intent = Intent(context, HabitosActivity::class.java)
+            startActivity(cambioAHabitos)
+        }
+        binding.btnTareas.setOnClickListener {
+            val cambioATareas: Intent = Intent(context, TareaActivity::class.java)
+            startActivity(cambioATareas)
+        }
+        binding.verPerfilButton.setOnClickListener {
+            val cambioALogueado: Intent = Intent(context, LogueadoActivity::class.java)
+            startActivity(cambioALogueado)
+        }
+
     }
 
     // 🔹 SE LLAMA CADA VEZ QUE VUELVES A ESTA PANTALLA
