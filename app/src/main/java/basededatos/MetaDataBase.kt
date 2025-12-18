@@ -8,7 +8,7 @@ import androidx.room.TypeConverters
 
 @Database(
     entities = [MetaEntity::class],
-    version = 3, // ⬅️ SUBE LA VERSIÓN
+    version = 4,
     exportSchema = false
 )
 @TypeConverters(Converters::class)

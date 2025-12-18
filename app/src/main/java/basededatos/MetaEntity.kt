@@ -15,5 +15,6 @@ data class MetaEntity(
     @ColumnInfo(name = "etiquetas") val Etiqueta: String?,
     @ColumnInfo(name = "actividades") val Actividades: MutableList<String> = mutableListOf(""),
     @ColumnInfo(name = "completada", defaultValue = "0") var Completada: Boolean = false,
-    @ColumnInfo(name = "fecha_terminada") var FechaTerminada: Long? = null
+    @ColumnInfo(name = "fecha_terminada") var FechaTerminada: Long? = null,
+    @ColumnInfo(name = "user_id") val UserId: String
 )

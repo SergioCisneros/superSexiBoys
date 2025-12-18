@@ -9,11 +9,11 @@ import androidx.room.Update
 @Dao
 interface MetaDao {
 
-    @Query("SELECT * FROM MetaEntity")
-    fun getAll(): List<MetaEntity>
+    @Query("SELECT * FROM MetaEntity WHERE completada = 0 AND user_id = :userId")
+    fun getAll(userId: String): List<MetaEntity>
 
-    @Query("SELECT * FROM MetaEntity WHERE Completada = 1")
-    fun getCompleted(): List<MetaEntity>
+    @Query("SELECT * FROM MetaEntity WHERE completada = 1 AND user_id = :userId")
+    fun getCompleted(userId: String): List<MetaEntity>
 
     @Insert
     fun insertAll(vararg meta: MetaEntity)

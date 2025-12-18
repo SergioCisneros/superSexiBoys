@@ -102,7 +102,7 @@ class MetasActivity : AppCompatActivity() {
 
     private fun cargarMetas() {
         lifecycleScope.launch(Dispatchers.IO) {
-            val listaMetas = metaDao.getAll()
+            val listaMetas = metaDao.getAll(FirebaseAuth.getInstance().currentUser?.uid ?: "")
                 .filter {
                     !it.Completada
                 } // filtraremos las metas que no esten completadas

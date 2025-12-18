@@ -11,6 +11,7 @@ import com.example.supersexiboys.adapters.MetaCompletadaAdapter
 import com.example.supersexiboys.basededatos.MetaDao
 import com.example.supersexiboys.basededatos.MetaDataBase
 import com.example.supersexiboys.databinding.ActivityMetasCompletadasBinding
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
@@ -40,7 +41,7 @@ class MetasCompletadasActivity : AppCompatActivity() {
         // Obtener metas completadas
         val metasCompletadas = runBlocking { // corrutina que bloquea el hilo actual
             withContext(Dispatchers.IO) {
-                metaDao.getCompleted()
+                metaDao.getCompleted(FirebaseAuth.getInstance().currentUser?.uid ?: "")
             }
         }
 
