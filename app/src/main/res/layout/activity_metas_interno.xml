@@ -10,7 +10,6 @@
     android:padding="10dp"
     tools:context=".MetasInternoActivity">
 
-    <!-- Título de la meta -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,7 +27,6 @@
             android:textColor="@color/white"/>
     </LinearLayout>
 
-    <!-- Descripción de la meta -->
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -55,7 +53,6 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <!-- Barra de progreso y porcentaje -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -83,7 +80,6 @@
         android:progressDrawable="@drawable/progress_bar"
         android:layout_marginBottom="15dp"/>
 
-    <!-- RecyclerView para las actividades -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerActividades"
         android:layout_width="match_parent"

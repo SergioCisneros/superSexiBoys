@@ -15,7 +15,6 @@ interface MetaDao {
     @Query("SELECT * FROM MetaEntity WHERE Completada = 1")
     fun getCompleted(): List<MetaEntity>
 
-
     @Insert
     fun insertAll(vararg meta: MetaEntity)
 
