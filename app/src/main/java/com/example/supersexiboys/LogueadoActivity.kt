@@ -43,7 +43,7 @@ class LogueadoActivity : AppCompatActivity() {
         }
 
         // Botón para ir a crear tarea
-        binding.btnIrACrearTarea.setOnClickListener {
+        binding.btnIrAPantallaInicio.setOnClickListener {
             val intent = Intent(context, HabitosActivity::class.java)
             startActivity(intent)
         }
