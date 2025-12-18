@@ -1,6 +1,5 @@
 package com.example.supersexiboys.adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -13,11 +12,19 @@ class MetaAdapter(
 
     private val metas = mutableListOf<MetaEntity>()
 
-    inner class MetaViewHolder(private val binding: ItemMetaBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    inner class MetaViewHolder(
+        private val binding: ItemMetaBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(meta: MetaEntity) {
             binding.textoMeta.text = meta.Titulo
+            binding.actividades.text =
+                "Actividades: ${meta.Actividades.size}"
+            binding.etiqueta.text = meta.Etiqueta
+
+            // 👇 MOSTRAR PORCENTAJE
+            binding.textoPorcentaje.text = "${meta.Progreso}%"
+
             binding.root.setOnClickListener {
                 onClick(meta)
             }

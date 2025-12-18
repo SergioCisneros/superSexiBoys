@@ -230,15 +230,6 @@
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
 
-                    <Button
-                        android:id="@+id/btnAgregarEtiqueta"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="5dp"
-                        android:backgroundTint="#2339A8"
-                        android:text="@string/botonplus"
-                        android:textColor="@android:color/white" />
 
                     <TextView
                         android:layout_width="wrap_content"

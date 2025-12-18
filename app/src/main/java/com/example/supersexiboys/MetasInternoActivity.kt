@@ -1,19 +1,19 @@
 package com.example.supersexiboys
 
-import android.content.Context
 import android.os.Bundle
-import android.widget.CheckBox
-import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.Room
+import com.example.supersexiboys.adapters.ActividadMetaAdapter
 import com.example.supersexiboys.basededatos.MetaDao
 import com.example.supersexiboys.basededatos.MetaDataBase
 import com.example.supersexiboys.databinding.ActivityMetasInternoBinding
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -21,9 +21,6 @@ class MetasInternoActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMetasInternoBinding
     private lateinit var metaDao: MetaDao
-    private val context: Context = this
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,72 +29,73 @@ class MetasInternoActivity : AppCompatActivity() {
         binding = ActivityMetasInternoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val db = Room.databaseBuilder(
-            applicationContext,
-            MetaDataBase::class.java,
-            MetaDataBase.DATABASE_NAME
-        ).build()
-
-        metaDao = db.metaDao()
-
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        val idMeta = intent.getIntExtra("ID_META", -1)
+        val db = MetaDataBase.getDatabase(this)
+        metaDao = db.metaDao()
 
-        // Obtener la meta desde la base de datos en background
-        GlobalScope.launch(Dispatchers.IO) {
+
+        val idMeta = intent.getIntExtra("ID_META", -1)
+        if (idMeta == -1) {
+            finish()
+            return
+        }
+
+        lifecycleScope.launch(Dispatchers.IO) {
             val meta = metaDao.getById(idMeta) ?: return@launch
 
             withContext(Dispatchers.Main) {
-                // Cargar título y descripción
                 binding.tituloMeta.text = meta.Titulo
                 binding.descripcionMeta.text = meta.Descripcion
 
-                val totalActividades = meta.Actividades.size
-                var completadas = 0
+                binding.progresoLineal.progress = meta.Progreso
+                binding.porcentajeBarra.text = "${meta.Progreso}%"
 
-                // LinearLayout donde van los checkboxes
-                val layoutCheckBoxes: LinearLayout = binding.scrollActividadesLinear // define este id en tu layout
 
-                // Limpiar por si hay algo previo
-                layoutCheckBoxes.removeAllViews()
+                val total = meta.Actividades.size
+                if (total == 0) return@withContext
 
-                // Crear los checkboxes dinámicamente
-                meta.Actividades.forEach { actividad ->
-                    val checkBox = CheckBox(context)
-                    checkBox.text = actividad
-                    checkBox.isChecked = meta.Completada // si la meta ya estaba completa
-                    checkBox.setTextColor(resources.getColor(android.R.color.white))
-                    checkBox.textSize = 18f
 
-                    checkBox.setOnCheckedChangeListener { _, isChecked ->
-                        completadas += if (isChecked) 1 else -1
-                        val progreso = (completadas * 100) / totalActividades
+                binding.recyclerActividades.layoutManager =
+                    LinearLayoutManager(this@MetasInternoActivity)
+
+
+                //100%
+                binding.recyclerActividades.adapter =
+                    ActividadMetaAdapter(
+                        actividades = meta.Actividades,
+                        progresoInicial = meta.Progreso
+                    ) { completadas ->
+
+                        val progreso = (completadas * 100) / total
                         binding.progresoLineal.progress = progreso
                         binding.porcentajeBarra.text = "$progreso%"
 
-                        // Si completado 100%, actualizar DB
-                        if (progreso == 100) {
-                            GlobalScope.launch(Dispatchers.IO) {
-                                meta.Completada = true
+                        lifecycleScope.launch(Dispatchers.IO) {
+                            meta.Progreso = progreso
+                            meta.Completada = progreso == 100
+                            if (progreso == 100) {
                                 meta.FechaTerminada = System.currentTimeMillis()
-                                metaDao.update(meta)
                             }
-                        } else if (meta.Completada) {
-                            GlobalScope.launch(Dispatchers.IO) {
-                                meta.Completada = false
-                                metaDao.update(meta)
+                            metaDao.update(meta)
+                        }
+
+                        if (progreso == 100) {
+                            lifecycleScope.launch(Dispatchers.Main) {
+                                Toast.makeText(
+                                    this@MetasInternoActivity,
+                                    "¡Felicidades! Meta completada",
+                                    Toast.LENGTH_LONG
+                                ).show()
                             }
                         }
+
                     }
 
-                    // Agregar al LinearLayout
-                    layoutCheckBoxes.addView(checkBox)
-                }
             }
         }
     }

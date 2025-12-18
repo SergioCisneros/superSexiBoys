@@ -12,8 +12,9 @@ interface MetaDao {
     @Query("SELECT * FROM MetaEntity")
     fun getAll(): List<MetaEntity>
 
-    @Query("SELECT * FROM MetaEntity WHERE completada = 1")
+    @Query("SELECT * FROM MetaEntity WHERE Completada = 1")
     fun getCompleted(): List<MetaEntity>
+
 
     @Insert
     fun insertAll(vararg meta: MetaEntity)

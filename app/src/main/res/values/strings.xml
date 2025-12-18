@@ -41,14 +41,21 @@
 
     <string name="agregar_meta"> AGREGANDO META </string>
     <string name="fecha_inicio1"> Fecha de inicio: </string>
-    <string name="fecha_inicio_meta"> dd/mm/aa: </string>
+    <string name="fecha_inicio_meta"> dd/mm/aa </string>
     <string name="fecha_limite1"> Fecha límite:  </string>
-    <string name="fecha_limite_meta"> dd/mm/aa: </string>
+    <string name="fecha_limite_meta"> dd/mm/aa </string>
     <string name="etiqueta1"> Etiqueta </string>
     <string name="actividades1"> Actividades </string>
     <string name="botonplus"> + </string>
     <string name="btnGuardarMeta"> Guardar </string>
     <string name="procentaje"> 00% </string>
     <string name="checkbox_meta"> Actividad </string>
+    <string name="metas_completadas"> METAS COMPLETADAS </string>
+    <string name="metaterminada_creado"> Creado en:   </string>
+    <string name="metaterminado_finalizado"> Finalizado en:  </string>
+    <string name="meta_terminada"> ✓  </string>
+
+
+
 
 </resources>

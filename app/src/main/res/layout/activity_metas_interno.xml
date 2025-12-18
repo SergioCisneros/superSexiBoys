@@ -5,163 +5,90 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MetasActivity"
     android:orientation="vertical"
-    android:weightSum="1"
     android:background="#6DC8E6"
-    >
+    android:padding="10dp"
+    tools:context=".MetasInternoActivity">
 
-
+    <!-- Título de la meta -->
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="end"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:id="@+id/tituloMeta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/titulo_meta"
+            android:textStyle="bold"
+            android:textSize="35sp"
+            android:textColor="@color/white"/>
+    </LinearLayout>
+
+    <!-- Descripción de la meta -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="15dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="6dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#1800AD"
+            android:padding="2dp">
+
+            <TextView
+                android:id="@+id/descripcionMeta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/descripcion_meta"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="#6B7EEC" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Barra de progreso y porcentaje -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:id="@+id/porcentajeBarra"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/procentaje"
+            android:textStyle="bold"
+            android:textSize="50sp"
+            android:textColor="@color/white"/>
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progresoLineal"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:max="100"
+        android:progress="0"
+        android:progressDrawable="@drawable/progress_bar"
+        android:layout_marginBottom="15dp"/>
+
+    <!-- RecyclerView para las actividades -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerActividades"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.5"
-        android:padding="10dp"
-        android:orientation="vertical"
-        >
-
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal"
-            >
-
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="right"
-                android:orientation="horizontal">
-
-
-            <TextView
-                android:id="@+id/tituloMeta"
-                android:text="@string/titulo_meta"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textSize="35sp"
-                android:textColor="@color/white"/>
-
-            </LinearLayout>
-
-
-        </LinearLayout>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="6dp"
-            android:layout_gravity="center"
-            android:clickable="true"
-            >
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:background="#6DC8E6"
-                android:layout_gravity="center"
-                >
-
-                <TextView
-                    android:id="@+id/descripcionMeta"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/descripcion_meta"
-                    android:padding="2dp"
-                    android:textStyle="bold"
-                    android:textSize="20sp"
-                    android:background="#1800AD"
-                    android:textColor="#6B7EEC" />
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-
-            <TextView
-                android:id="@+id/porcentajeBarra"
-                android:text="@string/procentaje"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textSize="50sp"
-                android:textColor="@color/white"/>
-
-        </LinearLayout>
-
-        <ProgressBar
-            android:id="@+id/progresoLineal"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:max="100"
-            android:progress="0"
-            android:progressDrawable="@drawable/progress_bar"/>>
-
-    </LinearLayout>
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.50">
-
-        <LinearLayout
-            android:id="@+id/scrollActividadesLinear"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="10dp">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="6dp"
-                android:clickable="true"
-                >
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="1dp"
-                    android:background="#11676a">
-
-                    <CheckBox
-                        android:id="@+id/miCheckBox1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:checked="false"
-                        android:scaleX="1"
-                        android:scaleY="1"
-                        android:gravity="left"
-                        android:text="@string/checkbox_meta"
-                        android:textColor="@color/white"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-
-
-        </LinearLayout>
-    </ScrollView>
-
-
+        android:scrollbars="vertical"
+        android:padding="0dp"/>
 </LinearLayout>

@@ -9,6 +9,7 @@ data class MetaEntity(
     @PrimaryKey(autoGenerate = true) val Id: Int = 0,
     @ColumnInfo(name = "titulo") val Titulo: String,
     @ColumnInfo(name = "descripcion") val Descripcion: String,
+    @ColumnInfo(name = "progreso") var Progreso: Int = 0,
     @ColumnInfo(name = "fecha_inicio") val FechaInicio: String,
     @ColumnInfo(name = "fecha_limite") val FechaLimite: String,
     @ColumnInfo(name = "etiquetas") val Etiqueta: String?,

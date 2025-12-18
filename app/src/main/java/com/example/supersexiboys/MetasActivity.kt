@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
@@ -16,6 +17,7 @@ import com.example.supersexiboys.basededatos.MetaDataBase
 import com.example.supersexiboys.basededatos.MetaEntity
 import com.example.supersexiboys.databinding.ActivityMetasBinding
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 
@@ -32,8 +34,6 @@ class MetasActivity : AppCompatActivity() {
         }
     }
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -41,16 +41,10 @@ class MetasActivity : AppCompatActivity() {
         binding = ActivityMetasBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val db = Room.databaseBuilder(
-            applicationContext,
-            MetaDataBase::class.java,
-            MetaDataBase.DATABASE_NAME
-        ).build()
-
-
+        val db = MetaDataBase.getDatabase(this)
         metaDao = db.metaDao()
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
@@ -61,9 +55,6 @@ class MetasActivity : AppCompatActivity() {
 
         binding.recyclerMetas.adapter = adapterMeta
 
-        val listaMetas = obtenerDatosEnBaseDeDatos()
-        adapterMeta.addDataCards(listaMetas)
-
         binding.btnNuevaMeta.setOnClickListener {
             startActivity(Intent(this, AgregarMetaActivity::class.java))
         }
@@ -73,13 +64,21 @@ class MetasActivity : AppCompatActivity() {
         }
     }
 
-    private fun obtenerDatosEnBaseDeDatos(): List<MetaEntity> {
-        var lista: List<MetaEntity> = emptyList()
-        runBlocking {
-            withContext(Dispatchers.IO) {
-                lista = metaDao.getAll()
+    // 🔹 SE LLAMA CADA VEZ QUE VUELVES A ESTA PANTALLA
+    override fun onResume() {
+        super.onResume()
+        cargarMetas()
+    }
+
+    private fun cargarMetas() {
+        lifecycleScope.launch(Dispatchers.IO) {
+            val listaMetas = metaDao.getAll()
+                .filter { !it.Completada } // <-- filtramos las completadas
+
+            withContext(Dispatchers.Main) {
+                adapterMeta.addDataCards(listaMetas)
             }
         }
-        return lista
     }
 }
+
