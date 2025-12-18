@@ -91,22 +91,26 @@
         android:layout_margin="15dp"
         android:backgroundTint="@color/azul_oscuro"
         android:layout_height="wrap_content"/>
+
     <Button
-        android:id="@+id/comunidades"
-        app:layout_constraintBottom_toTopOf="@+id/nuevo_habito_button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/comunidades_button"
         android:layout_width="wrap_content"
-        android:text="@string/comunidades"
+        android:layout_height="wrap_content"
         android:layout_margin="15dp"
+        android:layout_marginBottom="20dp"
         android:backgroundTint="@color/azul_oscuro"
-        android:layout_height="wrap_content"/>
+        android:text="@string/comunidades"
+        app:layout_constraintBottom_toTopOf="@+id/nuevo_habito_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <TextView
         android:id="@+id/linea2"
         android:layout_width="match_parent"
         android:layout_height="5dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/comunidades"
+        app:layout_constraintBottom_toTopOf="@+id/comunidades_button"
         android:background="@color/plomo_oscuro"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,6 +12,7 @@ import com.example.supersexiboys.basededatos.MetaDao
 import com.example.supersexiboys.basededatos.MetaDataBase
 import com.example.supersexiboys.basededatos.MetaEntity
 import com.example.supersexiboys.databinding.ActivityAgregarMetaBinding
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -75,7 +76,8 @@ class AgregarMetaActivity : AppCompatActivity() {
                 FechaInicio = fechaInicio,
                 FechaLimite = fechaLimite,
                 Etiqueta = etiqueta,
-                Actividades = listaActividades.toMutableList()
+                Actividades = listaActividades.toMutableList(),
+                UserId = FirebaseAuth.getInstance().currentUser?.uid ?: ""
             )
 
             // Guardar en db y volver a MetasActivity
