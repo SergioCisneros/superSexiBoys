@@ -9,7 +9,6 @@
     android:padding="15dp"
     tools:context=".TareaActivity"
     >
-
     <TextView
         android:id="@+id/tareaText"
         android:layout_width="match_parent"
@@ -39,7 +38,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/linea1"
         app:cardCornerRadius="20dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="18dp"
         >
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/caja_tareas"
@@ -73,7 +72,7 @@
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
                 android:id="@+id/caja_agregar_tareas_descripcion"
-                android:layout_width="match_parent" 
+                android:layout_width="match_parent"
                 android:layout_height="30dp"
                 app:layout_constraintStart_toStartOf="@id/caja_tareas"
                 app:layout_constraintEnd_toEndOf="@id/caja_tareas"
@@ -129,32 +128,8 @@
                         />
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
-            <TextView
-                android:id="@+id/titulo_etiqueta"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:textSize="20sp"
-                android:text="@string/texto_eqtiquetas"
-                android:textColor="@color/white"
-                app:layout_constraintStart_toStartOf="@id/caja_tareas"
-                app:layout_constraintEnd_toEndOf="@id/caja_tareas"
-                app:layout_constraintTop_toBottomOf="@id/tiempoYhora"
-                android:layout_marginTop="40dp"
-                />
-            <Button
-                android:id="@+id/button_agregar_etiqueta"
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:padding="10dp"
-                android:text="@string/texto_plus"
-                android:textColor="@color/white"
-                android:textSize="35sp"
-                android:backgroundTint="@color/azul_oscuro"
-                app:layout_constraintEnd_toEndOf="@id/caja_tareas"
-                app:layout_constraintStart_toStartOf="@id/caja_tareas"
-                app:layout_constraintTop_toBottomOf="@id/titulo_etiqueta"
-                />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
     <Button

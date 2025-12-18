@@ -8,36 +8,23 @@ import androidx.room.Update
 
 @Dao
 interface TareaDao {
-
-    // --- Consultas (Read) ---
-
-    @Query("SELECT * FROM TareaEntity WHERE completada = 0")
-    fun getAll(): List<TareaEntity>
-
-    @Query("SELECT * FROM TareaEntity WHERE completada = 1 ORDER BY fecha_terminada DESC")
-    fun getCompleted(): List<TareaEntity>
-
-    @Query("SELECT * FROM TareaEntity WHERE completada = 0 AND usuario_id = :userId")
+    //Consultar
+    @Query("SELECT * FROM TareaEntity WHERE completada = 0 AND usuario_id = :userId") //Pendiente
     fun getAllByUser(userId: String): List<TareaEntity>
-
     @Query("SELECT * FROM TareaEntity WHERE completada = 1 AND usuario_id = :userId ORDER BY fecha_terminada DESC")
     fun getCompletedByUser(userId: String): List<TareaEntity>
 
-    // --- Inserción (Create) ---
-
+    //Insertar
     @Insert
-    fun insertAll(vararg tarea: TareaEntity)
+    fun insertAll(vararg tarea: TareaEntity) //Insertar varias
 
-    // --- Actualización (Update) ---
-
+    //Actualizar
     @Update
     fun update(tarea: TareaEntity)
 
-    // --- Eliminación (Delete) ---
-
+    //Eliminar
     @Delete
     fun delete(tarea: TareaEntity)
-
     @Query("DELETE FROM TareaEntity")
     fun deleteAll()
 }
