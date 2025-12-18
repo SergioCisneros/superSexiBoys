@@ -12,17 +12,15 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-class AdaptadorTareaActivity(
-    private val onCheckClick: (TareaEntity) -> Unit
-) : RecyclerView.Adapter<AdaptadorTareaActivity.TareaCardViewHolder>() {
+class AdaptadorTareaActivity(private val onCheckClick: (TareaEntity) -> Unit) : RecyclerView.Adapter<AdaptadorTareaActivity.TareaCardViewHolder>() {// Check y scroll
 
     private val dataCards = mutableListOf<TareaEntity>()
     private var context: Context? = null
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TareaCardViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TareaCardViewHolder { //Crea Vistas
         context = parent.context
         return TareaCardViewHolder(
-            ItemTareaBinding.inflate(
+            ItemTareaBinding.inflate( //ItemTarea
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -31,52 +29,54 @@ class AdaptadorTareaActivity(
     }
 
     override fun onBindViewHolder(holder: TareaCardViewHolder, position: Int) {
-        holder.binding(dataCards[position])
+        holder.binding(dataCards[position]) //DatosItem
     }
 
-    override fun getItemCount(): Int = dataCards.size
+    override fun getItemCount(): Int = dataCards.size //Nro
 
-    inner class TareaCardViewHolder(
-        private val binding: ItemTareaBinding
-    ) : RecyclerView.ViewHolder(binding.root) {
+    //Cada Tarjeta ItemTarea
+    inner class TareaCardViewHolder(private val binding: ItemTareaBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun binding(tarea: TareaEntity) {
-            // 1. Mostrar textos básicos
-            binding.tvTitulo.text = tarea.Titulo
+            binding.tituloItem.text = tarea.Titulo
             binding.descripcion.text = tarea.Descripcion
 
             if (tarea.Completada) {
-                // Si la tarea está completada se va al historia;
-                binding.checkTerminar.visibility = View.GONE
-
-                binding.tvTitulo.paintFlags = binding.tvTitulo.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-
-                // Mostrar fecha de finalización
-                if (tarea.FechaTerminada != null) {
-                    val formato = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
-                    binding.tiempo.text = "Terminada: ${formato.format(Date(tarea.FechaTerminada!!))}"
-                }
+                mostrarCompletada(tarea)
             } else {
-                // Si la tarea está pendiente
-                binding.checkTerminar.visibility = View.VISIBLE
-                binding.checkTerminar.isChecked = false
-                binding.checkTerminar.isEnabled = true
-
-                // Quitar tachado si la vista se está reciclando
-                binding.tvTitulo.paintFlags = binding.tvTitulo.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
-
-                binding.tiempo.text = "Límite: ${tarea.TiempoLimite}"
+                mostrarPendiente(tarea)
             }
 
-            //click para marcar como terminada
             binding.checkTerminar.setOnClickListener {
-                if (binding.checkTerminar.isChecked) {
-                    onCheckClick(tarea)
-                }
+                if (binding.checkTerminar.isChecked) onCheckClick(tarea)
             }
         }
-    }
 
+        //Historial
+        private fun mostrarCompletada(tarea: TareaEntity) {
+            binding.checkTerminar.visibility = View.GONE
+            //Si Tachado
+            binding.tituloItem.paintFlags = binding.tituloItem.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+            //Termino Fecha
+            tarea.FechaTerminada?.let {
+                val formato = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
+                binding.tiempo.text = "Terminada: ${formato.format(Date(it))}"
+            }
+        }
+
+        //Tareas
+        private fun mostrarPendiente(tarea: TareaEntity) {
+            binding.checkTerminar.apply {
+                visibility = View.VISIBLE
+                isChecked = false
+                isEnabled = true
+            }
+            //No Tachado
+            binding.tituloItem.paintFlags = binding.tituloItem.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
+            binding.tiempo.text = "Límite: ${tarea.TiempoLimite}"
+        }
+    }
+    //Actualizar Items
     fun addDataCards(list: List<TareaEntity>) {
         dataCards.clear()
         dataCards.addAll(list)

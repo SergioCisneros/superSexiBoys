@@ -21,6 +21,15 @@
     <string name="nueva_tarea">Nueva Tarea</string>
     <string name="tareas_terminadas">Tareas Terminadas</string>
     <string name="lista_tareas">Lista de tareas</string>
+    <string name="titulo_items">Titulo de Item</string>
+    <string name="descrip_items">Descripcion</string>
+    <string name="hora_items">00:00</string>
+    <string name="terminadas_volver">VOLVER</string>
+    <string name="terminadas_historial">TAREAS TERMINADAS</string>
+    <string name="avatar_imagen">IMAGEN DE PERFIL</string>
+
+
+
 
 
 </resources>

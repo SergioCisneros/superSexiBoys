@@ -10,18 +10,22 @@ class SeleccionAvatarActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivitySeleccionAvatarBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.imgAvatar1.setOnClickListener { devolverSeleccion("avatar_uno") }
-        binding.imgAvatar2.setOnClickListener { devolverSeleccion("avatar_dos") }
-        binding.imgAvatar3.setOnClickListener { devolverSeleccion("avatar_tres") }
+        binding.imgAvatar1.setOnClickListener {
+            devolverSeleccion("avatar_uno") }
+        binding.imgAvatar2.setOnClickListener {
+            devolverSeleccion("avatar_dos") }
+        binding.imgAvatar3.setOnClickListener {
+            devolverSeleccion("avatar_tres") }
     }
 
     private fun devolverSeleccion(nombreAvatar: String) {
-        val intent = Intent()
+        val intent = Intent() //Enviar los datos de vuelta
         intent.putExtra("avatarSeleccionado", nombreAvatar)
         setResult(RESULT_OK, intent)
-        finish() // Cierra esta pantalla y vuelve al registro
+        finish() // volvemos a la anterior activity
     }
 }

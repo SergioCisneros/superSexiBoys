@@ -10,8 +10,7 @@ import com.example.supersexiboys.basededatos.TareaDataBase
 import com.example.supersexiboys.basededatos.TareaEntity
 import com.example.supersexiboys.databinding.ActivityTareasTerminadasBinding
 import com.example.supersexiboys.adapters.AdaptadorTareaActivity
-import com.google.firebase.auth.FirebaseAuth // Asegúrate de importar esto
-
+import com.google.firebase.auth.FirebaseAuth
 
 class TareasTerminadasActivity : AppCompatActivity() {
 
@@ -37,11 +36,10 @@ class TareasTerminadasActivity : AppCompatActivity() {
         binding.btnVolver.setOnClickListener {
             finish() //Cierra la actual activity y volvemos a la anterior
         }
-
         mostrarTareasTerminadas()
     }
 
-    // Si vuelves a entrar, que se actualice
+    // Actu al entrar de nuevo
     override fun onResume() {
         super.onResume()
         mostrarTareasTerminadas()
@@ -52,12 +50,7 @@ class TareasTerminadasActivity : AppCompatActivity() {
         val user = FirebaseAuth.getInstance().currentUser
         val userId = user?.uid ?: ""
 
-        // Validar que el usuario no esté vacío (opcional pero recomendado)
-        if (userId.isEmpty()) {
-            return
-        }
-
-        // Usar la consulta filtrada por usuario que ya tienes en tu DAO
+        // Filtrar DAO por terminadas por el userID
         val tareasTerminadas: List<TareaEntity> = baseDatos.tareaDao().getCompletedByUser(userId)
 
         //Configurar el adaptador con la lista filtrada
