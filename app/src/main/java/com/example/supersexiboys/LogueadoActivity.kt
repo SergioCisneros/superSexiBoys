@@ -34,6 +34,7 @@ class LogueadoActivity : AppCompatActivity() {
             else -> binding.imgPerfilUsuario.setImageResource(R.drawable.perfilvacio)
         }
 
+        binding.textEmail.setText((usuarioActual?.email).toString())
 
         // Botón para cerrar sesión
         binding.desloguearse.setOnClickListener {
@@ -42,7 +43,6 @@ class LogueadoActivity : AppCompatActivity() {
             startActivity(intentCambioAMain)
         }
 
-        // Botón para ir a crear tarea
         binding.btnIrAPantallaInicio.setOnClickListener {
             val intent = Intent(context, HabitosActivity::class.java)
             startActivity(intent)

@@ -38,7 +38,7 @@
                 android:backgroundTint="@color/verde_claro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Lo hice"/>
+                android:text="@string/ya_lo_hice"/>
             <TextView
                 android:id="@+id/text_contador"
                 app:layout_constraintTop_toTopOf="@+id/button_contador"
@@ -47,7 +47,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0/1"
+                android:text="@string/_0_1"
                 android:textColor="@color/white"
                 android:textSize="25sp"/>
 
@@ -65,7 +65,7 @@
                 android:id="@+id/text_tipo_habito"
                 app:layout_constraintTop_toBottomOf="@+id/button_contador"
                 app:layout_constraintStart_toStartOf="parent"
-                android:text="(Hábito débil)"
+                android:text="@string/habito_debil"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"

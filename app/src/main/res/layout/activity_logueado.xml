@@ -48,7 +48,16 @@
             android:scaleType="centerCrop"
             android:src="@drawable/perfilvacio" />
     </androidx.cardview.widget.CardView>
-
+    <TextView
+        android:id="@+id/text_email"
+        app:layout_constraintTop_toBottomOf="@+id/cardPerfil"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="20sp"/>
     <Button
         android:id="@+id/btnIrAPantallaInicio"
         android:layout_width="200dp"

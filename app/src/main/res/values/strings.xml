@@ -48,6 +48,14 @@
     <string name="num_ej_2">Num(Ej. 2)</string>
     <string name="nombre_de_etiqueta">Nombre de etiqueta</string>
     <string name="comunidades">Comunidades</string>
+    <string name="comunidadesM">COMUNIDADES</string>
+    <string name="empezar_habito">Empezar Hábito</string>
+    <string name="habito_debil">(Hábito débil)</string>
+    <string name="_0_1">0/1</string>
+    <string name="ya_lo_hice">Ya lo hice</string>
+    <string name="rep_1">1</string>
+    <string name="upb">UPB</string>
+    <string name="leer_todos_los_dias">LEER TODOS LOS DÍAS</string>
 
 
 </resources>
