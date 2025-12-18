@@ -8,7 +8,7 @@
     tools:context=".MetasActivity"
     android:orientation="vertical"
     android:weightSum="1"
-    android:background="#6DC8E6"
+    android:background="@color/celeste"
     >
 
 
@@ -48,31 +48,10 @@
                     android:layout_height="40dp"
                     android:src="@drawable/perfilvacio"/>
             </LinearLayout>
-        <LinearLayout
-            android:id="@+id/identifica_usuario"
-            android:layout_width="match_parent"
-            android:weightSum="10"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:layout_margin="15dp"
-            android:layout_height="wrap_content">
-            <Button
-                android:id="@+id/ver_perfil_button"
-                android:layout_weight="8"
-                android:layout_width="0dp"
-                android:text="@string/ver_perfil"
-                android:backgroundTint="@color/verde_oscuro"
-                android:layout_height="wrap_content"/>
-            <ImageView
-                android:id="@+id/imagen_perfil"
-                android:layout_width="0dp"
-                android:layout_weight="2"
-                android:layout_height="40dp"
-                android:src="@drawable/perfilvacio"/>
-        </LinearLayout>
 
 
             <Button
+                android:id="@+id/btnHabitos"
                 app:layout_constraintTop_toBottomOf="@+id/identifica_usuario"
                 app:layout_constraintEnd_toStartOf="@+id/metas_button"
                 android:layout_width="wrap_content"
@@ -91,7 +70,7 @@
                 android:backgroundTint="@color/azul_oscuro"
                 android:layout_height="wrap_content"/>
             <Button
-                android:id="@+id/tareas_button"
+                android:id="@+id/btnTareas"
                 app:layout_constraintTop_toBottomOf="@+id/identifica_usuario"
                 app:layout_constraintStart_toEndOf="@id/metas_button"
                 android:layout_width="wrap_content"

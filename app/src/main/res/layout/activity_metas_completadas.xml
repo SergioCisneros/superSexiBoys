@@ -7,7 +7,8 @@
     android:layout_height="match_parent"
     tools:context=".MetasCompletadasActivity"
     android:orientation="vertical"
-    android:background="#6DC8E6">
+    android:background="@color/celeste"
+    >
 
     <!-- Encabezado -->
     <LinearLayout

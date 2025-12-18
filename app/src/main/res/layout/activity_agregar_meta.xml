@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#6DC8E6"
+    android:background="@color/celeste"
     >
 
     <LinearLayout
@@ -86,12 +86,13 @@
                             >
 
                             <EditText
+                                android:id="@+id/titulo_meta"
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
-                                android:hint="Titulo"
                                 android:gravity="center"
-                                android:textColorHint="#d8e4ff"
-                                />
+                                android:textColor="@color/white"
+                                android:hint="@string/titulo_meta"
+                                android:textColorHint="#d8e4ff" />
 
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
@@ -115,6 +116,7 @@
                             >
 
                             <EditText
+                                android:id="@+id/descripcion_meta"
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
                                 android:hint="@string/descripcion_meta"

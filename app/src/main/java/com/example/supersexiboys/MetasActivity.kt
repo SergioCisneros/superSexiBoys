@@ -20,11 +20,15 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
+import com.google.firebase.auth.FirebaseAuth
 
 class MetasActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMetasBinding
     private lateinit var metaDao: MetaDao
+
+    val context: Context =  this
+
 
     private val adapterMeta: MetaAdapter by lazy {
         MetaAdapter { meta ->
@@ -40,6 +44,7 @@ class MetasActivity : AppCompatActivity() {
 
         binding = ActivityMetasBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
 
         val db = MetaDataBase.getDatabase(this)
         metaDao = db.metaDao()
@@ -68,12 +73,23 @@ class MetasActivity : AppCompatActivity() {
             startActivity(cambioAHabitos)
         }
         binding.btnTareas.setOnClickListener {
-            val cambioATareas: Intent = Intent(context, TareaActivity::class.java)
+            val cambioATareas: Intent = Intent(context, CrearTareaActivity::class.java)
             startActivity(cambioATareas)
         }
         binding.verPerfilButton.setOnClickListener {
             val cambioALogueado: Intent = Intent(context, LogueadoActivity::class.java)
             startActivity(cambioALogueado)
+        }
+
+        //Mostrar Imagen de Perfil
+        val user = FirebaseAuth.getInstance().currentUser
+        val nombreAvatar = user?.photoUrl.toString() // Obtenemos el nombre guardado en Firebase
+
+        when (nombreAvatar) { //Como un Case
+            "avatar_uno" -> binding.imagenPerfil.setImageResource(R.drawable.avatar_uno)
+            "avatar_dos" -> binding.imagenPerfil.setImageResource(R.drawable.avatar_dos)
+            "avatar_tres" -> binding.imagenPerfil.setImageResource(R.drawable.avatar_tres)
+            else -> binding.imagenPerfil.setImageResource(R.drawable.perfilvacio)
         }
 
     }
