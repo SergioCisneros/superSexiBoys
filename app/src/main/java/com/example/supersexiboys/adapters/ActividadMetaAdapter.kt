@@ -15,8 +15,15 @@ class ActividadMetaAdapter(
 
     init {
         val total = actividades.size
-        val marcadas = (progresoInicial * total) / 100
-        estados = MutableList(total) { index -> index < marcadas }
+        val marcadas = (progresoInicial * total) / 100 // para marcar las actividades
+        estados = mutableListOf<Boolean>()
+        for (index in 0 until total) {
+            if (index < marcadas) {
+                estados.add(true)   // actividad marcada
+            } else {
+                estados.add(false)  // actividad no marcada
+            }
+        }
     }
 
 

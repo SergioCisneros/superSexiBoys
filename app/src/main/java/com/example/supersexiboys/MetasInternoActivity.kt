@@ -64,7 +64,7 @@ class MetasInternoActivity : AppCompatActivity() {
                     LinearLayoutManager(this@MetasInternoActivity)
 
 
-                //100%
+                //procentaje
                 binding.recyclerActividades.adapter =
                     ActividadMetaAdapter(
                         actividades = meta.Actividades,
@@ -79,14 +79,14 @@ class MetasInternoActivity : AppCompatActivity() {
                             meta.Progreso = progreso
                             meta.Completada = progreso == 100
                             if (progreso == 100) {
-                                meta.FechaTerminada = System.currentTimeMillis()
+                                meta.FechaTerminada = System.currentTimeMillis() // funcion para devolver la hora
                             }
                             metaDao.update(meta)
                         }
 
                         if (progreso == 100) {
                             lifecycleScope.launch(Dispatchers.Main) {
-                                Toast.makeText(
+                                Toast.makeText( // notificacion
                                     this@MetasInternoActivity,
                                     "¡Felicidades! Meta completada",
                                     Toast.LENGTH_LONG

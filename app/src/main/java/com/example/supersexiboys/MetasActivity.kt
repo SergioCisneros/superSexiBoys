@@ -30,7 +30,7 @@ class MetasActivity : AppCompatActivity() {
     val context: Context =  this
 
 
-    private val adapterMeta: MetaAdapter by lazy {
+    private val adapterMeta: MetaAdapter by lazy { // adapter meta se usara recien la primera vez
         MetaAdapter { meta ->
             val intent = Intent(this, MetasInternoActivity::class.java)
             intent.putExtra("ID_META", meta.Id)
@@ -46,7 +46,7 @@ class MetasActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        val db = MetaDataBase.getDatabase(this)
+        val db = MetaDataBase.getDatabase(context)
         metaDao = db.metaDao()
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
@@ -55,17 +55,17 @@ class MetasActivity : AppCompatActivity() {
             insets
         }
 
-        binding.recyclerMetas.layoutManager =
-            LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+        binding.recyclerMetas.layoutManager = // manejo de recycler views
+            LinearLayoutManager(context, RecyclerView.VERTICAL, false)
 
         binding.recyclerMetas.adapter = adapterMeta
 
         binding.btnNuevaMeta.setOnClickListener {
-            startActivity(Intent(this, AgregarMetaActivity::class.java))
+            startActivity(Intent(context, AgregarMetaActivity::class.java))
         }
 
         binding.btnMetasCompletadas.setOnClickListener {
-            startActivity(Intent(this, MetasCompletadasActivity::class.java))
+            startActivity(Intent(context, MetasCompletadasActivity::class.java))
         }
 
         binding.btnHabitos.setOnClickListener {
@@ -94,7 +94,7 @@ class MetasActivity : AppCompatActivity() {
 
     }
 
-    // 🔹 SE LLAMA CADA VEZ QUE VUELVES A ESTA PANTALLA
+    // lo llamaremos cada vez que vamos a una pantalla
     override fun onResume() {
         super.onResume()
         cargarMetas()
@@ -103,10 +103,12 @@ class MetasActivity : AppCompatActivity() {
     private fun cargarMetas() {
         lifecycleScope.launch(Dispatchers.IO) {
             val listaMetas = metaDao.getAll()
-                .filter { !it.Completada } // <-- filtramos las completadas
+                .filter {
+                    !it.Completada
+                } // filtraremos las metas que no esten completadas
 
-            withContext(Dispatchers.Main) {
-                adapterMeta.addDataCards(listaMetas)
+            withContext(Dispatchers.Main) { // nos cambiamos al hilo prinicpal, porque las actualizaciones en la interfaz deben hacerse en el hilo principal
+                adapterMeta.addDataCards(listaMetas) // el adaptador del recyclerview de metadapter, recibe la lista de metas
             }
         }
     }

@@ -31,7 +31,7 @@ class AgregarMetaActivity : AppCompatActivity() {
         binding = ActivityAgregarMetaBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val db = MetaDataBase.getDatabase(this)
+        val db = MetaDataBase.getDatabase(context)
         metaDao = db.metaDao()
 
 
@@ -41,9 +41,9 @@ class AgregarMetaActivity : AppCompatActivity() {
             insets
         }
 
-        // Botón "+" para agregar la actividad escrita
+        // Botón para agregar la actividad escrita
         binding.btnAgregarActividad.setOnClickListener {
-            val textoActual = binding.actividadNueva.text.toString().trim()
+            val textoActual = binding.actividadNueva.text.toString().trim() // trim elimina los espacios en blanco para evitar errores
             if (textoActual.isNotEmpty()) {
                 listaActividades.add(textoActual) // Guardar en lista
                 binding.actividadNueva.text.clear() // Limpiar EditText
@@ -59,13 +59,15 @@ class AgregarMetaActivity : AppCompatActivity() {
             val etiqueta = binding.etiquetaNueva.text.toString().trim()
 
             if (titulo.isEmpty()) {
-                binding.tituloMeta.error = "Ingrese un título"
-                return@setOnClickListener
+                binding.tituloMeta.error = "Ingrese un título" // etiqueta de error
+                return@setOnClickListener // solo sale del click listener pero no de toda la funcion
             }
 
             // Guardar la actividad que quede escrita
             val textoActual = binding.actividadNueva.text.toString().trim()
-            if (textoActual.isNotEmpty()) listaActividades.add(textoActual)
+            if (textoActual.isNotEmpty()){
+                listaActividades.add(textoActual)
+            }
 
             val meta = MetaEntity(
                 Titulo = titulo,
@@ -76,11 +78,11 @@ class AgregarMetaActivity : AppCompatActivity() {
                 Actividades = listaActividades.toMutableList()
             )
 
-            // Guardar en DB y volver a MetasActivity
-            GlobalScope.launch(Dispatchers.IO) {
+            // Guardar en db y volver a MetasActivity
+            GlobalScope.launch(Dispatchers.IO) { // la corrutina
                 metaDao.insertAll(meta)
                 startActivity(Intent(context, MetasActivity::class.java))
-                finish()
+                finish() // cierra la actividad actual
             }
         }
     }

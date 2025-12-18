@@ -38,13 +38,13 @@ class MetasCompletadasActivity : AppCompatActivity() {
         }
 
         // Obtener metas completadas
-        val metasCompletadas = runBlocking {
+        val metasCompletadas = runBlocking { // corrutina que bloquea el hilo actual
             withContext(Dispatchers.IO) {
                 metaDao.getCompleted()
             }
         }
 
-        // Configurar RecyclerView
+        // Configuramos RecyclerView
         binding.recyclerMetasCompletadas.layoutManager = LinearLayoutManager(this)
         binding.recyclerMetasCompletadas.adapter = MetaCompletadaAdapter(metasCompletadas)
     }
