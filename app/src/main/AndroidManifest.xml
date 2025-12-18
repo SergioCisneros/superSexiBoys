@@ -20,12 +20,15 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
+
+
         <activity
             android:name=".RegistroActivity"
             android:exported="false" />
@@ -43,13 +46,19 @@
             android:exported="false" />
         <activity
             android:name=".MetasActivity"
-            android:exported="false" />
+            android:exported="true" />
+
         <activity
             android:name=".MetasInternoActivity"
             android:exported="false" />
         <activity
             android:name=".AgregarMetaActivity"
-            android:exported="false" />
+            android:exported="true"
+            >
+
+
+        </activity>
+
         <activity
             android:name=".MetasCompletadasActivity"
             android:exported="false" />
