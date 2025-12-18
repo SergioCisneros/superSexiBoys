@@ -13,6 +13,6 @@ data class HabitoEntity(
     @ColumnInfo(name = "frecuencia") val frecuencia: String,
     @ColumnInfo(name = "repeticiones") val repeticiones: Int,
     @ColumnInfo(name = "etiquetas") val etiquetas: String,
-    @ColumnInfo(name = "veces_hecho") var vecesHecho: Int
-
+    @ColumnInfo(name = "veces_hecho") var vecesHecho: Int,
+    @ColumnInfo(name = "veces_completado") var vecesCompletado: String
 )

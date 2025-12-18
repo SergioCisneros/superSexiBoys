@@ -103,7 +103,8 @@ class HabitosActivity : AppCompatActivity() {
                     frecuencia = frecuenciaRecibida,
                     repeticiones = repeticionesRecibido.toInt(),
                     etiquetas = fromList(etiquetasRebida),
-                    vecesHecho = 0
+                    vecesHecho = 0,
+                    vecesCompletado = fromIntList(mutableListOf(0))
                 )
                 habitoDao.insertAll(habito)
             }
@@ -138,6 +139,10 @@ class HabitosActivity : AppCompatActivity() {
     fun fromList(value: List<String>): String {
         return value.joinToString(",") // convierte la lista a un string separado por comas
     }
+    fun fromIntList(value: MutableList<Int>?): String {
+        return value?.joinToString(",") ?: ""
+    }
+
 
 
 }
