@@ -60,6 +60,15 @@ class HabitosActivity : AppCompatActivity() {
             insets
         }
 
+        //Mostrar Imagen de Perfil
+        val user = FirebaseAuth.getInstance().currentUser
+        val nombreAvatar = user?.photoUrl.toString() // Obtenemos el nombre guardado en Firebase
+        when (nombreAvatar) { //Como un Case
+            "avatar_uno" -> binding.imagenPerfil.setImageResource(R.drawable.avatar_uno)
+            "avatar_dos" -> binding.imagenPerfil.setImageResource(R.drawable.avatar_dos)
+            "avatar_tres" -> binding.imagenPerfil.setImageResource(R.drawable.avatar_tres)
+            else -> binding.imagenPerfil.setImageResource(R.drawable.perfilvacio)
+        }
         binding.nuevoHabitoButton.setOnClickListener {
             val cambioAAgregarHabito: Intent = Intent(context, AgregandoHabitosActivity::class.java)
             startActivity(cambioAAgregarHabito)

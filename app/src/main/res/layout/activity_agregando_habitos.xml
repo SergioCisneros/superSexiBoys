@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="AGREGANDO HÁBITO"
+        android:text="@string/agregando_habito"
         android:textSize="25sp"
         android:layout_height="wrap_content"/>
     <TextView
@@ -57,7 +57,7 @@
                     <EditText
                         android:id="@+id/edit_titulo"
                         android:background="@color/verde_claro"
-                        android:hint="Título"
+                        android:hint="@string/titulo"
                         android:gravity="center"
                         android:layout_width="match_parent"
                         android:textColor="@color/white"
@@ -80,7 +80,7 @@
                     <EditText
                         android:id="@+id/edit_descripcion"
                         android:background="@color/verde_claro"
-                        android:hint="Descripción (Opcional)"
+                        android:hint="@string/descripcion_opcional"
                         android:gravity="center"
                         android:layout_width="match_parent"
                         android:textColor="@color/white"
@@ -97,7 +97,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:textSize="23sp"
-                android:text="Frecuencia:"/>
+                android:text="@string/frecuencia"/>
             <Button
                 android:id="@+id/button_diario"
                 android:layout_margin="5dp"
@@ -106,7 +106,7 @@
                 android:backgroundTint="@color/azul_pastel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Diario"/>
+                android:text="@string/diario"/>
             <Button
                 android:id="@+id/button_semanal"
                 android:layout_margin="5dp"
@@ -115,7 +115,7 @@
                 android:backgroundTint="@color/azul_pastel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Semanal"/>
+                android:text="@string/semanal"/>
 
             <TextView
                 android:id="@+id/text_repeticiones"
@@ -125,7 +125,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:textSize="21sp"
-                android:text="Repeticiones:"/>
+                android:text="@string/repeticiones"/>
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardview_rep"
                 android:layout_width="wrap_content"
@@ -142,7 +142,7 @@
                         android:id="@+id/edit_repeticiones"
                         android:layout_width="wrap_content"
                         android:padding="5dp"
-                        android:hint="Num(Ej. 2)"
+                        android:hint="@string/num_ej_2"
                         android:gravity="center"
                         android:background="@color/celeste"
                         android:layout_height="wrap_content"/>
@@ -161,7 +161,7 @@
                 android:layout_width="wrap_content"
                 android:textColor="@color/white"
                 android:layout_height="wrap_content"
-                android:text="Etiquetas (Opcional)"
+                android:text="@string/etiquetas_opcional"
                 android:textSize="25sp"/>
             <androidx.cardview.widget.CardView
                 android:id="@+id/nombre_etiqueta_edit_text"
@@ -177,7 +177,7 @@
                     <EditText
                         android:id="@+id/nombre_de_etiqueta"
                         android:layout_width="match_parent"
-                        android:hint="Nombre de etiqueta"
+                        android:hint="@string/nombre_de_etiqueta"
                         android:gravity="center"
                         android:background="@color/celeste"
                         android:layout_height="wrap_content"/>
@@ -197,7 +197,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_width="wrap_content"
-                android:text="Agregar etiqueta"
+                android:text="@string/agregar_etiqueta"
                 android:backgroundTint="@color/azul_oscuro"
                 android:layout_height="wrap_content"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -209,7 +209,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_width="wrap_content"
-        android:text="Guardar"
+        android:text="@string/guardar"
         android:layout_margin="15dp"
         android:backgroundTint="@color/azul_oscuro"
         android:layout_height="wrap_content"/>

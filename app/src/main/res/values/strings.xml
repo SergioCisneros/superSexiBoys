@@ -27,9 +27,27 @@
     <string name="terminadas_volver">VOLVER</string>
     <string name="terminadas_historial">TAREAS TERMINADAS</string>
     <string name="avatar_imagen">IMAGEN DE PERFIL</string>
-
-
-
+    <string name="ir_a_pantalla_de_inicio">IR A PANTALLA DE INICIO</string>
+    <string name="mi_perfil">Mi Perfil</string>
+    <string name="agregando_habito">AGREGANDO HÁBITO</string>
+    <string name="frecuencia">Frecuencia:</string>
+    <string name="diario">Diario</string>
+    <string name="semanal">Semanal</string>
+    <string name="repeticiones">Repeticiones:</string>
+    <string name="etiquetas_opcional">Etiquetas (Opcional)</string>
+    <string name="agregar_etiqueta">Agregar etiqueta</string>
+    <string name="guardar">Guardar</string>
+    <string name="ver_perfil">Ver perfil</string>
+    <string name="habitos">HÁBITOS</string>
+    <string name="metas">METAS</string>
+    <string name="tareas">TAREAS</string>
+    <string name="nuevo_habito">Nuevo Hábito</string>
+    <string name="login">LOGIN</string>
+    <string name="titulo">Título</string>
+    <string name="descripcion_opcional">Descripción (Opcional)</string>
+    <string name="num_ej_2">Num(Ej. 2)</string>
+    <string name="nombre_de_etiqueta">Nombre de etiqueta</string>
+    <string name="comunidades">Comunidades</string>
 
 
 </resources>

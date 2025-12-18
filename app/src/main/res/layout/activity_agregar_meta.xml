@@ -26,28 +26,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:background="#11676a"
-                >
-
-                <TextView
-                    android:id="@+id/txtNombreUsuario"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="NOMBRE USUARIO"
-                    android:textStyle="bold"
-                    android:textSize="20sp"
-                    android:background="#11676a"
-                    android:textColor="@color/white" />
-
-
-                <ImageView
-                    android:id="@+id/imgPerfil"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/perfilvacio"
-                    android:background="@drawable/circuloblanco"
-                    android:padding="5dp" />
-            </LinearLayout>
+                />
         </androidx.cardview.widget.CardView>
 
         <TextView

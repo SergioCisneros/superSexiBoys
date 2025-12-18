@@ -21,7 +21,7 @@
             android:id="@+id/ver_perfil_button"
             android:layout_weight="8"
             android:layout_width="0dp"
-            android:text="Ver perfil"
+            android:text="@string/ver_perfil"
             android:backgroundTint="@color/verde_oscuro"
             android:layout_height="wrap_content"/>
         <ImageView
@@ -37,7 +37,7 @@
         app:layout_constraintTop_toBottomOf="@+id/identifica_usuario"
         app:layout_constraintEnd_toStartOf="@+id/metas_button"
         android:layout_width="wrap_content"
-        android:text="HÁBITOS"
+        android:text="@string/habitos"
         android:layout_margin="15dp"
         android:backgroundTint="@color/azul_oscuro"
         android:layout_height="wrap_content"/>
@@ -49,7 +49,7 @@
         android:layout_margin="15dp"
         android:layout_marginTop="12dp"
         android:backgroundTint="@color/azul_pastel"
-        android:text="METAS"
+        android:text="@string/metas"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/identifica_usuario" />
@@ -59,7 +59,7 @@
         app:layout_constraintTop_toBottomOf="@+id/identifica_usuario"
         app:layout_constraintStart_toEndOf="@id/metas_button"
         android:layout_width="wrap_content"
-        android:text="TAREAS"
+        android:text="@string/tareas"
         android:layout_margin="15dp"
         android:backgroundTint="@color/azul_pastel"
         android:layout_height="wrap_content"/>
@@ -87,7 +87,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_width="wrap_content"
-        android:text="Nuevo Hábito"
+        android:text="@string/nuevo_habito"
         android:layout_margin="15dp"
         android:backgroundTint="@color/azul_oscuro"
         android:layout_height="wrap_content"/>
@@ -97,7 +97,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_width="wrap_content"
-        android:text="Comunidades"
+        android:text="@string/comunidades"
         android:layout_margin="15dp"
         android:backgroundTint="@color/azul_oscuro"
         android:layout_height="wrap_content"/>

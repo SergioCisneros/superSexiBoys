@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Mi Perfil"
+        android:text="@string/mi_perfil"
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,11 +50,11 @@
     </androidx.cardview.widget.CardView>
 
     <Button
-        android:id="@+id/btnIrACrearTarea"
+        android:id="@+id/btnIrAPantallaInicio"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:text="IR A CREAR TAREA"
+        android:text="@string/ir_a_pantalla_de_inicio"
         android:backgroundTint="@color/azul_oscuro"
         app:layout_constraintTop_toBottomOf="@+id/cardPerfil"
         app:layout_constraintStart_toStartOf="parent"

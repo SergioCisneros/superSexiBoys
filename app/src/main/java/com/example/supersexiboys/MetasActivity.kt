@@ -1,6 +1,7 @@
 package com.example.supersexiboys
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -27,6 +28,19 @@ class MetasActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        binding.btnHabitos.setOnClickListener {
+            val cambioAHabitos: Intent = Intent(context, HabitosActivity::class.java)
+            startActivity(cambioAHabitos)
+        }
+        binding.btnTareas.setOnClickListener {
+            val cambioATareas: Intent = Intent(context, TareaActivity::class.java)
+            startActivity(cambioATareas)
+        }
+        binding.verPerfilButton.setOnClickListener {
+            val cambioALogueado: Intent = Intent(context, LogueadoActivity::class.java)
+            startActivity(cambioALogueado)
         }
     }
 }
